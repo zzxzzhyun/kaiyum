@@ -1,8 +1,12 @@
 package com.example.kaiyum.ui.campus;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,11 +14,9 @@ import android.view.ViewGroup;
 
 import com.example.kaiyum.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CampusFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.Arrays;
+import java.util.List;
+
 public class CampusFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -22,23 +24,18 @@ public class CampusFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    // TODO: Temporary open/close list
+    List<String> openArr = Arrays.asList(new String[]{"open 1", "open 2", "open 3", "open 4", "open 5"});
+    List<String> closeArr = Arrays.asList(new String[]{"close 1", "close 2", "close 3", "close 4", "close 5"});
+
 
     public CampusFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CampusFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static CampusFragment newInstance(String param1, String param2) {
         CampusFragment fragment = new CampusFragment();
         Bundle args = new Bundle();
@@ -60,7 +57,18 @@ public class CampusFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_campus, container, false);
+        View root = inflater.inflate(R.layout.fragment_campus, container, false);
+
+        RecyclerView openrv = root.findViewById(R.id.open_campus_list);
+        CampusListAdapater openAdapter = new CampusListAdapater(requireContext(), openArr);
+        openrv.setAdapter(openAdapter);
+        openrv.setLayoutManager(new LinearLayoutManager(requireContext()));
+
+        RecyclerView closerv = root.findViewById(R.id.close_campus_list);
+        CampusListAdapater closeAdapter = new CampusListAdapater(requireContext(), closeArr);
+        closerv.setAdapter(closeAdapter);
+        closerv.setLayoutManager(new LinearLayoutManager(requireContext()));
+
+        return root;
     }
 }

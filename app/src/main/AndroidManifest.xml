@@ -2,13 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.kaiyum">
-
     <!-- 인터넷 사용 권한 설정 -->
     <uses-permission android:name="android.permission.INTERNET" />
 
-
     <application
-        android:name = ".KaiYum"
+        android:name=".KaiYum"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -18,22 +16,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kaiyum"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.campus.CampusDetailActivity"
+            android:exported="false" />
+
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="60472dbd93ec101cfb100846f6ef937b"/>
+            android:value="@string/kakao_native_key" />
+
         <activity
             android:name=".ui.login.LoginActivity"
             android:exported="true"
-            android:label="@string/title_activity_login" >
+            android:label="@string/title_activity_login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"/>
+            android:label="@string/app_name" />
     </application>
 
 </manifest>

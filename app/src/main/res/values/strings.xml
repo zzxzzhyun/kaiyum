@@ -4,7 +4,6 @@
     <string name="title_restaurant">맛집</string>
     <string name="title_more">더보기</string>
     <string name="title_activity_login">LoginActivity</string>
-    <string name="kakao_app_key">60472dbd93ec101cfb100846f6ef937b</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
