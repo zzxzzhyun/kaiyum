@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Log.d("GET_KEYHASH",getKeyHash());
+        Log.d("GET_KEYHASH",getKeyHash());
 
         btn_login = findViewById(R.id.btn_login);
 
