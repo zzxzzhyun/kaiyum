@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">kaiyum</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="kakao_app_key">60472dbd93ec101cfb100846f6ef937b</string>
+</resources>
