@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_campus">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.example.kaiyum.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_campus"
+        android:name="com.example.kaiyum.ui.campus.CampusFragment"
+        android:label="@string/title_campus"
+        tools:layout="@layout/fragment_campus" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.kaiyum.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_outCampus"
+        android:name="com.example.kaiyum.ui.restaurant.RestaurantListFragment"
+        android:label="@string/title_restaurant"
+        tools:layout="@layout/fragment_restaurant_list" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.kaiyum.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_more"
+        android:name="com.example.kaiyum.ui.more.MoreFragment"
+        android:label="@string/title_more"
+        tools:layout="@layout/fragment_more" />
 </navigation>

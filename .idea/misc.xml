@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Jay/Desktop/madcamp/kaiyum/app/src/main/res/layout/fragment_campus.xml" value="0.22864583333333333" />
+        <entry key="..\:/Users/Jay/Desktop/madcamp/kaiyum/app/src/main/res/layout/fragment_more.xml" value="0.22864583333333333" />
+        <entry key="..\:/Users/Jay/Desktop/madcamp/kaiyum/app/src/main/res/layout/fragment_restaurant_list.xml" value="0.28894927536231885" />
+        <entry key="..\:/Users/Jay/Desktop/madcamp/kaiyum/app/src/main/res/menu/bottom_nav_menu.xml" value="0.271875" />
         <entry key="app/src/main/res/layout-w1240dp/activity_login.xml" value="0.249665327978581" />
         <entry key="app/src/main/res/layout-w936dp/activity_login.xml" value="0.2520491803278688" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.3342391304347826" />
