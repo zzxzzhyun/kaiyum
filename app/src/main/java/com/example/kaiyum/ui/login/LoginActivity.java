@@ -1,5 +1,6 @@
 package com.example.kaiyum.ui.login;
 
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -10,13 +11,20 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+
+import com.example.kaiyum.MainActivity;
 import com.example.kaiyum.R;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import com.kakao.sdk.auth.model.OAuthToken;
+import com.kakao.sdk.common.model.ClientErrorCause;
 import com.kakao.sdk.user.UserApiClient;
 import com.kakao.sdk.user.model.Account;
 import com.kakao.sdk.user.model.User;
+
+import kotlin.Unit;
+import kotlin.jvm.functions.Function2;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG="사용자";
@@ -27,47 +35,51 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Log.d("GET_KEYHASH",getKeyHash());
+        // Log.d("GET_KEYHASH",getKeyHash());
 
         btn_login = findViewById(R.id.btn_login);
 
-
-
-        btn_login.setOnClickListener(new View.OnClickListener(){
+        btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UserApiClient.getInstance().loginWithKakaoTalk(LoginActivity.this,(oAuthToken, error) -> {
-                    if (error != null) {
-                        Log.e(TAG, "로그인 실패", error);
-                    } else if (oAuthToken != null) {
-                        Log.i(TAG, "로그인 성공(토큰) : " + oAuthToken.getAccessToken());
-
-                        UserApiClient.getInstance().me((user, meError) -> {
-                            if (meError != null) {
-                                Log.e(TAG, "사용자 정보 요청 실패", meError);
-                            } else {
-                                System.out.println("로그인 완료");
-                                Log.i(TAG, user.toString());
-                                {
-                                    Log.i(TAG, "사용자 정보 요청 성공" +
-                                            "\n회원번호: "+user.getId() +
-                                            "\n이메일: "+user.getKakaoAccount().getEmail());
-                                }
-                                Account user1 = user.getKakaoAccount();
-                                System.out.println("사용자 계정" + user1);
-                            }
-                            return null;
-                        });
-                    }
-                    return null;
-                });
-
+                signInKakao();
             }
         });
+        }
 
+    private void signInKakao() {
+        // @brief : 카카오톡이 설치되어 있으면 카카오톡으로 로그인, 아니면 카카오계정으로 로그인
+        if (UserApiClient.getInstance().isKakaoTalkLoginAvailable(LoginActivity.this))
+            UserApiClient.getInstance().loginWithKakaoTalk(LoginActivity.this, callback);
+        else UserApiClient.getInstance().loginWithKakaoAccount(LoginActivity.this, callback);
     }
 
-    // 키해시 얻기
+    Function2<OAuthToken, Throwable, Unit> callback = (oAuthToken, throwable) -> {
+        if (oAuthToken != null) {
+            Log.i("[카카오] 로그인", "성공");
+            updateKakaoLogin();
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
+        if (throwable != null) {
+            Log.i("[카카오] 로그인", "실패");
+            Log.e("signInKakao()", throwable.getLocalizedMessage());
+        } return null;
+    };
+
+    private void updateKakaoLogin() {
+        UserApiClient.getInstance().me((user, throwable) -> {
+            if (user != null) {
+                Log.i("[카카오] 로그인 정보", user.toString());
+                long userId = user.getId();
+                Log.i("[카카오] 로그인 정보", userId + "");
+            } else {
+                // 로그인 실패
+            }
+            return null;
+        });
+    }
+
     public String getKeyHash(){
         try{
             PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
