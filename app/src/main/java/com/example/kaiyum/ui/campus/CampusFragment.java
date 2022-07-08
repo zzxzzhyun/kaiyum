@@ -52,8 +52,6 @@ public class CampusFragment extends Fragment {
     private String mParam2;
     // TODO: Temporary open/close list
     List<String> allArr = Arrays.asList(new String[]{"fclt", "west", "east1", "east2"});
-    List<String> openArr = new ArrayList<>();
-    List<String> closeArr = new ArrayList<>();
     List<String> day = Arrays.asList(new String[]{"morning", "lunch", "dinner"});
 
     public CampusFragment() {
@@ -86,6 +84,8 @@ public class CampusFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_campus, container, false);
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
         AssetManager assetManager= getContext().getAssets();
+        List<String> openArr = new ArrayList<>();
+        List<String> closeArr = new ArrayList<>();
 
         try {
             InputStream is = assetManager.open("campusTime.json");
@@ -107,12 +107,12 @@ public class CampusFragment extends Fragment {
                     Date date1 = timeFormat.parse(time1);
                     Date date2 = timeFormat.parse(time2);
                     if (date1.getTime()-current.getTime()<=0 && date2.getTime()-current.getTime()>=0){
-                       this.openArr.add(temp);
+                       openArr.add(temp);
                        break;
                     }
                 }
                 if (openArr!=null && !openArr.contains(temp)){
-                    this.closeArr.add(temp);
+                    closeArr.add(temp);
                 }
             }
 

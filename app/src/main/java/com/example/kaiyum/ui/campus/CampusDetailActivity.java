@@ -34,10 +34,10 @@ public class CampusDetailActivity extends AppCompatActivity {
         call.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                JsonArray menu = response.body().getAsJsonArray("name");
-                content1.setText(menu.get(0).toString().replace("\"",""));
-                content2.setText(menu.get(1).toString().replace("\"",""));
-                content3.setText(menu.get(2).toString().replace("\"",""));
+                JsonObject menu = response.body().getAsJsonObject("name");
+                content1.setText(menu.get("morning").getAsString());
+                content2.setText(menu.get("lunch").getAsString());
+                content3.setText(menu.get("dinner").getAsString());
             }
 
             @Override
