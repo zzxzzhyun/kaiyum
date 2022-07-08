@@ -82,6 +82,7 @@ public class CampusFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_campus, container, false);
+
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
         AssetManager assetManager= getContext().getAssets();
         List<String> openArr = new ArrayList<>();
@@ -114,6 +115,7 @@ public class CampusFragment extends Fragment {
                 if (openArr!=null && !openArr.contains(temp)){
                     closeArr.add(temp);
                 }
+
             }
 
         } catch (IOException | JSONException | ParseException e) {

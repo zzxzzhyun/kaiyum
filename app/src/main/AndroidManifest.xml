@@ -48,6 +48,9 @@
                     android:scheme= "@string/kakao_app_key" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.restaurant.detail.RestaurantDetailActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

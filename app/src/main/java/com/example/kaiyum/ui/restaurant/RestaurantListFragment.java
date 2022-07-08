@@ -13,9 +13,18 @@ import android.view.ViewGroup;
 
 import com.example.kaiyum.R;
 import com.example.kaiyum.data.model.Restaurant;
+import com.example.kaiyum.ui.campus.RetrofitClientInstance;
+import com.example.kaiyum.ui.campus.RetrofitService;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RestaurantListFragment extends Fragment {
     private RestaurantRecyclerAdapter adapter;
@@ -48,35 +57,43 @@ public class RestaurantListFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
 
-        ArrayList<Restaurant> restaurantList = getRestaurantList();
-        getData(restaurantList);
-
+        getRestaurantList(v);
 
         return v;
     }
 
-    private ArrayList<Restaurant> getRestaurantList(){
+    private ArrayList<Restaurant> getRestaurantList(View v){
         ArrayList<Restaurant> restaurantList = new ArrayList<>();
 
         // TODO : API통신으로 식당 리스트 받아와야 함.
+        RetrofitService service = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<JsonArray> call = service.getRestaurants();
+        call.enqueue(new Callback<JsonArray>() {
+            @Override
+            public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
+                JsonArray menu = response.body();
 
-        // HardCoded
-        Restaurant r1 = new Restaurant();
-        Restaurant r2 = new Restaurant();
+                for(JsonElement object : menu){
+                    Restaurant r = new Restaurant();
 
-        r1.setId(1);
-        r2.setId(2);
-        r1.setReviewCount(10);
-        r2.setReviewCount(15);
-        r1.setScore(5.0f);
-        r2.setScore(3.0f);
-        r1.setName("대박맛집");
-        r2.setName("완전맛집");
-        r1.setLocation("어은동");
-        r2.setLocation("궁동");
+                    r.setId(object.getAsJsonObject().get("rid").getAsInt());
+                    r.setReviewCount(object.getAsJsonObject().get("review_count").getAsInt());
+                    r.setScore(object.getAsJsonObject().get("score").getAsFloat());
+                    r.setName(object.getAsJsonObject().get("name").getAsString());
+                    r.setLocation(object.getAsJsonObject().get("location").getAsString());
+                    r.setImageURL(object.getAsJsonObject().get("img").getAsString());
 
-        restaurantList.add(r1);
-        restaurantList.add(r2);
+                    restaurantList.add(r);
+                }
+
+                getData(restaurantList);
+            }
+
+            @Override
+            public void onFailure(Call<JsonArray> call, Throwable t) {
+                Log.e("jsonerror", t.getMessage());
+            }
+        });
 
         return restaurantList;
     }
@@ -90,6 +107,7 @@ public class RestaurantListFragment extends Fragment {
             data.setName(r.getName());
             data.setScore(r.getScore());
             data.setReviewCount(r.getReviewCount());
+            data.setImageURL(r.getImageURL());
 
             Log.d("check", data.toString());
             adapter.addItem(data);

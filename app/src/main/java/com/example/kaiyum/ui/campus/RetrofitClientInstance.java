@@ -1,5 +1,8 @@
 package com.example.kaiyum.ui.campus;
 
+import android.view.View;
+
+import com.example.kaiyum.R;
 import com.google.gson.annotations.SerializedName;
 
 import retrofit2.Retrofit;
@@ -9,12 +12,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClientInstance {
 
     private static Retrofit retrofit;
-    private static final String BASE_URL = "http://10.0.2.2:80/";
-
+    private static final String API_HOST = "http://172.10.5.179:80/";
     public static Retrofit getRetrofitInstance() {
         if (retrofit == null) {
             retrofit = new retrofit2.Retrofit.Builder()
-                    .baseUrl(BASE_URL)
+                    .baseUrl(API_HOST)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }

@@ -11,9 +11,9 @@
 
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/restaurant_recyclerView_thumbnail"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:layout_weight="1"
         tools:srcCompat="@drawable/restauranticon" />
 
