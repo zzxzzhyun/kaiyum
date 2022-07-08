@@ -1,14 +1,17 @@
 package com.example.kaiyum.ui.restaurant;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.kaiyum.R;
 import com.example.kaiyum.data.model.Restaurant;
 import com.example.kaiyum.ui.restaurant.detail.RestaurantDetailActivity;
@@ -18,11 +21,12 @@ import java.util.ArrayList;
 
 public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRecyclerAdapter.ItemViewHolder>{
     private ArrayList<Restaurant> listData = new ArrayList<>();
+    View view;
 
     @NonNull
     @Override
     public RestaurantRecyclerAdapter.ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_restaurant_recycler_adapter, parent, false);
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_restaurant_recycler_adapter, parent, false);
         return new ItemViewHolder(view);
     }
 
@@ -35,6 +39,9 @@ public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRe
         holder.reviewCount.setText("" + restaurant.getReviewCount());
         holder.score.setText("" + restaurant.getScore());
         holder.location.setText(restaurant.getLocation());
+
+        // Image URL로 사진 교체
+        Glide.with(view.getContext()).load(restaurant.getImageURL()).into(holder.thumbnail);
     }
 
     @Override
@@ -57,6 +64,7 @@ public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRe
         private TextView location;
         private TextView reviewCount;
         private TextView score;
+        private ImageView thumbnail;
 
         ItemViewHolder(View itemView) {
             super(itemView);
@@ -66,6 +74,7 @@ public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRe
             location = itemView.findViewById(R.id.restaurant_location);
             reviewCount = itemView.findViewById(R.id.restaurant_review);
             score = itemView.findViewById(R.id.restaurant_score);
+            thumbnail = itemView.findViewById(R.id.restaurant_recyclerView_thumbnail);
 
             // 각 아이템마다 클릭이벤트 생성
             itemView.setOnClickListener(new View.OnClickListener() {
