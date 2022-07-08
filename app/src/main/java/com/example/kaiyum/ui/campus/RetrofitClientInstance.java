@@ -12,11 +12,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClientInstance {
 
     private static Retrofit retrofit;
-
-    public static Retrofit getRetrofitInstance(View v) {
+    private static final String API_HOST = "http://172.10.5.179:80/";
+    public static Retrofit getRetrofitInstance() {
         if (retrofit == null) {
             retrofit = new retrofit2.Retrofit.Builder()
-                    .baseUrl(v.getResources().getString(R.string.API_HOST))
+                    .baseUrl(API_HOST)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }

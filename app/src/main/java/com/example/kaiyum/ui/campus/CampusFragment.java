@@ -1,7 +1,10 @@
 package com.example.kaiyum.ui.campus;
 
+import android.content.res.AssetManager;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,8 +17,25 @@ import android.view.ViewGroup;
 import com.example.kaiyum.R;
 import com.google.gson.JsonObject;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,9 +51,8 @@ public class CampusFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     // TODO: Temporary open/close list
-    List<String> openArr = Arrays.asList(new String[]{"open 1", "open 2", "open 3", "open 4", "open 5"});
-    List<String> closeArr = Arrays.asList(new String[]{"close 1", "close 2", "close 3", "close 4", "close 5"});
-
+    List<String> allArr = Arrays.asList(new String[]{"fclt", "west", "east1", "east2"});
+    List<String> day = Arrays.asList(new String[]{"morning", "lunch", "dinner"});
 
     public CampusFragment() {
         // Required empty public constructor
@@ -58,38 +77,65 @@ public class CampusFragment extends Fragment {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_campus, container, false);
 
-        RetrofitService service = RetrofitClientInstance.getRetrofitInstance(root).create(RetrofitService.class);
-        Call<JsonObject> call = service.getCampus("west");
-        call.enqueue(new Callback<JsonObject>() {
-            @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                JsonObject menu = response.body();
-                // Log.d("json", menu.toString());
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+        AssetManager assetManager= getContext().getAssets();
+        List<String> openArr = new ArrayList<>();
+        List<String> closeArr = new ArrayList<>();
+
+        try {
+            InputStream is = assetManager.open("campusTime.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            String json = new String(buffer, "UTF-8");
+            JSONObject jsonObject = new JSONObject(json);
+
+            Calendar cal = Calendar.getInstance();
+            cal.set(1970, 0, 1);
+            Date current = cal.getTime();
+
+            for (String temp: this.allArr){
+                for (String time: this.day){
+                    String time1 = jsonObject.getJSONObject(temp).getJSONObject(time).getString("open");
+                    String time2 = jsonObject.getJSONObject(temp).getJSONObject(time).getString("close");
+                    Date date1 = timeFormat.parse(time1);
+                    Date date2 = timeFormat.parse(time2);
+                    if (date1.getTime()-current.getTime()<=0 && date2.getTime()-current.getTime()>=0){
+                       openArr.add(temp);
+                       break;
+                    }
+                }
+                if (openArr!=null && !openArr.contains(temp)){
+                    closeArr.add(temp);
+                }
+
             }
 
-            @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-                Log.e("jsonerror", t.getMessage());
-            }
-        });
-
-
+        } catch (IOException | JSONException | ParseException e) {
+            e.printStackTrace();
+        }
 
         RecyclerView openrv = root.findViewById(R.id.open_campus_list);
+        if (!openArr.isEmpty()){
         CampusListAdapater openAdapter = new CampusListAdapater(requireContext(), openArr);
         openrv.setAdapter(openAdapter);
-        openrv.setLayoutManager(new LinearLayoutManager(requireContext()));
+        openrv.setLayoutManager(new LinearLayoutManager(requireContext()));}
 
         RecyclerView closerv = root.findViewById(R.id.close_campus_list);
+        if (!closeArr.isEmpty()){
         CampusListAdapater closeAdapter = new CampusListAdapater(requireContext(), closeArr);
         closerv.setAdapter(closeAdapter);
-        closerv.setLayoutManager(new LinearLayoutManager(requireContext()));
+        closerv.setLayoutManager(new LinearLayoutManager(requireContext()));}
 
         return root;
     }
+
+
 }

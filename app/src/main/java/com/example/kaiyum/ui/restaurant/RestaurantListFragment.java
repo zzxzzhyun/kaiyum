@@ -66,7 +66,7 @@ public class RestaurantListFragment extends Fragment {
         ArrayList<Restaurant> restaurantList = new ArrayList<>();
 
         // TODO : API통신으로 식당 리스트 받아와야 함.
-        RetrofitService service = RetrofitClientInstance.getRetrofitInstance(v).create(RetrofitService.class);
+        RetrofitService service = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
         Call<JsonArray> call = service.getRestaurants();
         call.enqueue(new Callback<JsonArray>() {
             @Override

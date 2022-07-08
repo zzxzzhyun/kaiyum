@@ -19,7 +19,8 @@
         android:id="@+id/open_campus_list"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        app:layout_constraintTop_toBottomOf="@id/open_campus_title"/>
+        app:layout_constraintTop_toBottomOf="@id/open_campus_title"
+        />
 
     <TextView
         android:id="@+id/close_campus_title"
