@@ -81,6 +81,7 @@ public class RestaurantListFragment extends Fragment {
                     r.setScore(object.getAsJsonObject().get("score").getAsFloat());
                     r.setName(object.getAsJsonObject().get("name").getAsString());
                     r.setLocation(object.getAsJsonObject().get("location").getAsString());
+                    r.setImageURL(object.getAsJsonObject().get("img").getAsString());
 
                     restaurantList.add(r);
                 }
@@ -106,6 +107,7 @@ public class RestaurantListFragment extends Fragment {
             data.setName(r.getName());
             data.setScore(r.getScore());
             data.setReviewCount(r.getReviewCount());
+            data.setImageURL(r.getImageURL());
 
             Log.d("check", data.toString());
             adapter.addItem(data);
