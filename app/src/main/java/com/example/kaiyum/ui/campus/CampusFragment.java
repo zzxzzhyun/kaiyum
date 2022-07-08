@@ -63,13 +63,13 @@ public class CampusFragment extends Fragment {
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_campus, container, false);
 
-        RetrofitService service = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        RetrofitService service = RetrofitClientInstance.getRetrofitInstance(root).create(RetrofitService.class);
         Call<JsonObject> call = service.getCampus("west");
         call.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 JsonObject menu = response.body();
-                Log.d("json", menu.toString());
+                // Log.d("json", menu.toString());
             }
 
             @Override
