@@ -1,21 +1,25 @@
 package com.example.kaiyum.ui.campus;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.kaiyum.R;
+import com.google.gson.JsonObject;
 
 import java.util.Arrays;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CampusFragment extends Fragment {
 
@@ -58,6 +62,23 @@ public class CampusFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_campus, container, false);
+
+        RetrofitService service = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<JsonObject> call = service.getCampus("west");
+        call.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                JsonObject menu = response.body();
+                Log.d("json", menu.toString());
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Log.e("jsonerror", t.getMessage());
+            }
+        });
+
+
 
         RecyclerView openrv = root.findViewById(R.id.open_campus_list);
         CampusListAdapater openAdapter = new CampusListAdapater(requireContext(), openArr);
