@@ -12,7 +12,7 @@ public class KaiYum extends Application {
         instance = this;
 
         // 네이티브 앱 키로 초기화
-        KakaoSdk.init(this, "60472dbd93ec101cfb100846f6ef937b");
+        KakaoSdk.init(this, String.valueOf(R.string.kakao_native_key));
     }
 
 
