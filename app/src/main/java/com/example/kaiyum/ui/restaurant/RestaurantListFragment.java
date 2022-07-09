@@ -67,7 +67,7 @@ public class RestaurantListFragment extends Fragment {
         ArrayList<Restaurant> restaurantList = new ArrayList<>();
 
         RetrofitService service = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
-        Call<JsonArray> call = service.getRestaurants();
+        Call<JsonArray> call = service.getRestaurants("all");
         call.enqueue(new Callback<JsonArray>() {
             @Override
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {

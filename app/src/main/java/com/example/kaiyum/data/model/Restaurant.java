@@ -6,6 +6,24 @@ public class Restaurant {
     private int reviewCount;
     private float score;
     private String location;
+    private double x;
+    private double y;
+
+    public double getX() {
+        return x;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
 
     public int getId() {
         return id;
@@ -62,8 +80,11 @@ public class Restaurant {
         return "Restaurant{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", reviewCount=" + reviewCount +
                 ", score=" + score +
                 ", location='" + location + '\'' +
+                ", x=" + x +
+                ", y=" + y +
                 ", imageURL='" + imageURL + '\'' +
                 '}';
     }

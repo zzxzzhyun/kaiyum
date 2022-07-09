@@ -70,7 +70,9 @@ public class RestaurantDetailActivity extends AppCompatActivity implements OnMap
                 r.setName(menu.get("name").getAsString());
                 r.setLocation(menu.get("location").getAsString());
                 r.setScore(menu.get("score").getAsFloat());
-                r.setReviewCount(5);
+                r.setReviewCount(menu.get("review_count").getAsInt());
+                r.setX(Double.parseDouble(menu.get("x").getAsString()));
+                r.setY(Double.parseDouble(menu.get("y").getAsString()));
 
                 if(menu.get("img") == JsonNull.INSTANCE) {
                     r.setImageURL("");
@@ -106,8 +108,8 @@ public class RestaurantDetailActivity extends AppCompatActivity implements OnMap
         }
 
         // TODO : 위도와 경도를 서버에서 받아서 설정하는 코드 추가
-        latitude = 36.3628152;
-        longitude = 127.3588209;
+        latitude = r.getY();
+        longitude = r.getX();
     }
 
     public static void setMarker(Marker marker, double lat, double lng, int resourceID, int zIndex) {
@@ -132,7 +134,7 @@ public class RestaurantDetailActivity extends AppCompatActivity implements OnMap
         //위치 및 각도 조정
         CameraPosition cameraPosition = new CameraPosition(
                 new LatLng(latitude, longitude),   // 위치 지정
-                9,                                     // 줌 레벨
+                17,                                     // 줌 레벨
                 0,                                       // 기울임 각도
                 0                                     // 방향
         );
