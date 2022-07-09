@@ -41,7 +41,11 @@ public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRe
         holder.location.setText(restaurant.getLocation());
 
         // Image URL로 사진 교체
-        Glide.with(view.getContext()).load(restaurant.getImageURL()).into(holder.thumbnail);
+        if(restaurant.getImageURL().equals("")){
+            holder.thumbnail.setImageResource(R.drawable.restauranticon);
+        }else{
+            Glide.with(view.getContext()).load(restaurant.getImageURL()).into(holder.thumbnail);
+        }
     }
 
     @Override
@@ -80,10 +84,9 @@ public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRe
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // TODO : 클릭 이벤트 발생 시 가게 상세페이지로 이동시킴
                     Intent detailIntent = new Intent(v.getContext(), RestaurantDetailActivity.class);
 
-                    detailIntent.putExtra("id", id.getText());
+                    detailIntent.putExtra("rid", id.getText());
 
                     v.getContext().startActivity(detailIntent);
                 }

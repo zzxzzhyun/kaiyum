@@ -17,6 +17,7 @@ import com.example.kaiyum.ui.campus.RetrofitClientInstance;
 import com.example.kaiyum.ui.campus.RetrofitService;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 
 import java.lang.reflect.Array;
@@ -65,9 +66,8 @@ public class RestaurantListFragment extends Fragment {
     private ArrayList<Restaurant> getRestaurantList(View v){
         ArrayList<Restaurant> restaurantList = new ArrayList<>();
 
-        // TODO : API통신으로 식당 리스트 받아와야 함.
         RetrofitService service = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
-        Call<JsonArray> call = service.getRestaurants();
+        Call<JsonArray> call = service.getRestaurants("all");
         call.enqueue(new Callback<JsonArray>() {
             @Override
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
@@ -81,7 +81,12 @@ public class RestaurantListFragment extends Fragment {
                     r.setScore(object.getAsJsonObject().get("score").getAsFloat());
                     r.setName(object.getAsJsonObject().get("name").getAsString());
                     r.setLocation(object.getAsJsonObject().get("location").getAsString());
-                    r.setImageURL(object.getAsJsonObject().get("img").getAsString());
+
+                    if(object.getAsJsonObject().get("img") == JsonNull.INSTANCE){
+                        r.setImageURL("");
+                    }else{
+                        r.setImageURL(object.getAsJsonObject().get("img").getAsString());
+                    }
 
                     restaurantList.add(r);
                 }
