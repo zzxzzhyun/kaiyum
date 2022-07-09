@@ -80,10 +80,9 @@ public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRe
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // TODO : 클릭 이벤트 발생 시 가게 상세페이지로 이동시킴
                     Intent detailIntent = new Intent(v.getContext(), RestaurantDetailActivity.class);
 
-                    detailIntent.putExtra("id", id.getText());
+                    detailIntent.putExtra("rid", id.getText());
 
                     v.getContext().startActivity(detailIntent);
                 }

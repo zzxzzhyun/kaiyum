@@ -16,6 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kaiyum"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="@string/naver_app_key" />
+
         <activity
             android:name=".ui.campus.CampusDetailActivity"
             android:exported="false" />
