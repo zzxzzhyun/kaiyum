@@ -20,6 +20,7 @@ import com.example.kaiyum.ui.campus.RetrofitClientInstance;
 import com.example.kaiyum.ui.campus.RetrofitService;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.CameraPosition;
@@ -67,10 +68,15 @@ public class RestaurantDetailActivity extends AppCompatActivity implements OnMap
 
                 r.setId(rid);
                 r.setName(menu.get("name").getAsString());
-                r.setImageURL(menu.get("img").getAsString());
                 r.setLocation(menu.get("location").getAsString());
                 r.setScore(menu.get("score").getAsFloat());
                 r.setReviewCount(5);
+
+                if(menu.get("img") == JsonNull.INSTANCE) {
+                    r.setImageURL("");
+                }else{
+                    r.setImageURL(menu.get("img").getAsString());
+                }
 
                 bindRestaurant(r);
             }
@@ -89,12 +95,16 @@ public class RestaurantDetailActivity extends AppCompatActivity implements OnMap
         TextView score = findViewById(R.id.restaurantDetail_score);
         TextView reviewCount = findViewById(R.id.restaurantDetail_reviewCount);
 
-        Glide.with(getApplicationContext()).load(r.getImageURL()).into(img);
         name.setText(r.getName());
         location.setText(r.getLocation());
         score.setText("" + r.getScore());
         reviewCount.setText("" + r.getReviewCount());
-        
+
+        // imageURL이 빈 문자열이다 == 미리보기 이미지가 없다.
+        if(!r.getImageURL().equals("")){
+            Glide.with(getApplicationContext()).load(r.getImageURL()).into(img);
+        }
+
         // TODO : 위도와 경도를 서버에서 받아서 설정하는 코드 추가
         latitude = 36.3628152;
         longitude = 127.3588209;

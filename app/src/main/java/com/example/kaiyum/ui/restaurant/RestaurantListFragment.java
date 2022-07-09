@@ -17,6 +17,7 @@ import com.example.kaiyum.ui.campus.RetrofitClientInstance;
 import com.example.kaiyum.ui.campus.RetrofitService;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 
 import java.lang.reflect.Array;
@@ -80,7 +81,12 @@ public class RestaurantListFragment extends Fragment {
                     r.setScore(object.getAsJsonObject().get("score").getAsFloat());
                     r.setName(object.getAsJsonObject().get("name").getAsString());
                     r.setLocation(object.getAsJsonObject().get("location").getAsString());
-                    r.setImageURL(object.getAsJsonObject().get("img").getAsString());
+
+                    if(object.getAsJsonObject().get("img") == JsonNull.INSTANCE){
+                        r.setImageURL("");
+                    }else{
+                        r.setImageURL(object.getAsJsonObject().get("img").getAsString());
+                    }
 
                     restaurantList.add(r);
                 }
