@@ -18,7 +18,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/open_campus_list"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/open_campus_title"
         />
 
@@ -27,6 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/open_campus_list"
+        app:layout_constraintBottom_toTopOf="@id/close_campus_list"
         app:layout_constraintLeft_toLeftOf="parent"
         android:text="영업종료">
     </TextView>
@@ -34,7 +35,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/close_campus_list"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/close_campus_title"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
