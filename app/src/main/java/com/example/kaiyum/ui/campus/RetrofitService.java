@@ -4,10 +4,13 @@ import com.example.kaiyum.data.model.Review;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -40,4 +43,8 @@ public interface RetrofitService {
 
     @POST("review")
     Call<JsonObject> addReview(@Body Review review);
+
+    @Multipart
+    @POST("review/image")
+    Call<JsonObject> addReviewImage(@Part MultipartBody.Part file, @Query("reviewId") int review_id);
 }

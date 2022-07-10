@@ -3,8 +3,10 @@ package com.example.kaiyum.ui.review;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,13 +27,22 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.kakao.sdk.user.UserApiClient;
 
+import org.w3c.dom.Text;
+
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Base64;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.Multipart;
 
 public class ReviewActivity extends AppCompatActivity {
     Review reviewForUpload = new Review();
@@ -39,6 +50,8 @@ public class ReviewActivity extends AppCompatActivity {
 
     // for image upload
     private final int CODE_ALBUM_REQUEST = 201;
+    Uri selectedImage;
+    String mediaPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -165,35 +178,27 @@ public class ReviewActivity extends AppCompatActivity {
     }
 
     // 사진 선택 후 이미지 비트맵으로 전환
+    @SuppressLint("Range")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        TextView imgStatusTextView = findViewById(R.id.review_imageStatusTextView);
 
         if (requestCode == CODE_ALBUM_REQUEST && resultCode == RESULT_OK && data != null) {
-            Uri filePath = data.getData();
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
-                reviewForUpload.setBitmap(bitmapToString(bitmap));
+            imgStatusTextView.setText("사진 준비 완료");
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            // 받아온 사진 URI를 cursor를 이용하여 PATH 저장
+            selectedImage = data.getData();
+
+            Cursor cursor = getContentResolver().query(Uri.parse(selectedImage.toString()), null, null, null, null);
+            assert cursor != null;
+            cursor.moveToFirst();
+            mediaPath = cursor.getString(cursor.getColumnIndex(MediaStore.MediaColumns.DATA));
+        }else{
+            imgStatusTextView.setText("사진 로드 실패. 다시 부탁드립니다.");
         }
     }
 
-    // Bitmap을 String 으로 변환
-    public String bitmapToString(Bitmap bitmap) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 10, baos);
-        byte[] imageBytes = baos.toByteArray();
-        String imageString = null;
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            imageString = Base64.getEncoder().encodeToString(imageBytes);
-        }
-
-        return imageString;
-    }
 
     private void handlePostRequest(){
         Button uploadBtn = findViewById(R.id.review_uploadReviewBtn);
@@ -213,12 +218,7 @@ public class ReviewActivity extends AppCompatActivity {
                 call.enqueue(new Callback<JsonObject>() {
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                        if(response.isSuccessful()){
-                            Toast.makeText(getApplicationContext(), "소중한 후기 감사합니다.", Toast.LENGTH_SHORT).show();
-                            finish();
-                        }else{
-                            Toast.makeText(getApplicationContext(), "등록에 실패했습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
-                        }
+                        handleImagePost(response.body().get("review_id").getAsInt());
                     }
 
                     @Override
@@ -228,6 +228,32 @@ public class ReviewActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    private void handleImagePost(int review_id){
+        if(mediaPath != null) {
+            File file = new File(mediaPath);
+            RequestBody requestBody = RequestBody.create(MediaType.parse("image/jpeg"), file);
+            MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("img", file.getName(), requestBody);
+
+            Call<JsonObject> call = service.addReviewImage(fileToUpload, review_id);
+            call.enqueue(new Callback<JsonObject>() {
+                @Override
+                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                    if(response.isSuccessful()){
+                        Toast.makeText(getApplicationContext(), "소중한 후기 감사합니다.", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }else{
+                        Toast.makeText(getApplicationContext(), "등록에 실패했습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<JsonObject> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(), "사진 등록에 실패했습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     private boolean validCheck(){
