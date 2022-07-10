@@ -2,6 +2,7 @@ package com.example.kaiyum.ui.restaurant;
 
 import android.os.Bundle;
 
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import com.example.kaiyum.R;
 import com.example.kaiyum.data.model.Restaurant;
@@ -29,6 +31,16 @@ import retrofit2.Response;
 
 public class RestaurantListFragment extends Fragment {
     private RestaurantRecyclerAdapter adapter;
+    private ArrayList<Restaurant> restaurantList;
+
+    private String[] LOCATION_KEYS = {
+            "ueon",
+            "ugoong",
+            "goong",
+            "bongmyung"
+    };
+
+    private final String LOCATION_ALL = "all";
 
     public RestaurantListFragment() {
         // Required empty public constructor
@@ -58,7 +70,10 @@ public class RestaurantListFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
 
-        getRestaurantList(v);
+        restaurantList = getRestaurantList(v);
+
+        handleSearch(v);
+        handleLocation(v);
 
         return v;
     }
@@ -67,7 +82,7 @@ public class RestaurantListFragment extends Fragment {
         ArrayList<Restaurant> restaurantList = new ArrayList<>();
 
         RetrofitService service = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
-        Call<JsonArray> call = service.getRestaurants("all");
+        Call<JsonArray> call = service.getRestaurants(LOCATION_ALL);
         call.enqueue(new Callback<JsonArray>() {
             @Override
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
@@ -91,7 +106,7 @@ public class RestaurantListFragment extends Fragment {
                     restaurantList.add(r);
                 }
 
-                getData(restaurantList);
+                getData(restaurantList, LOCATION_KEYS[0]);
             }
 
             @Override
@@ -103,8 +118,15 @@ public class RestaurantListFragment extends Fragment {
         return restaurantList;
     }
 
-    private void getData(ArrayList<Restaurant> list){
+    private void getData(ArrayList<Restaurant> list, String location){
+        // 초기화
+        adapter.deleteAllItem();
+
         for(Restaurant r : list){
+            if(!(location.equals(LOCATION_ALL) || location.equals(r.getLocation()))){
+                continue;
+            }
+
             Restaurant data = new Restaurant();
 
             data.setId(r.getId());
@@ -118,5 +140,56 @@ public class RestaurantListFragment extends Fragment {
         }
 
         adapter.notifyDataSetChanged();
+    }
+
+    private ArrayList<Restaurant> searchList(String key) {
+        ArrayList<Restaurant> ret = new ArrayList<>();
+
+        for (Restaurant r : restaurantList) {
+            if (r.getName().contains(key)) {
+                ret.add(r);
+            }
+        }
+
+        return ret;
+    }
+
+    private void handleSearch(View v){
+        SearchView searchView = v.findViewById(R.id.restaurant_searchView);
+        searchView.isSubmitButtonEnabled();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                getData(searchList(s), LOCATION_ALL);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                getData(searchList(s), LOCATION_ALL);
+                return true;
+            }
+        });
+    }
+
+    private void handleLocation(View v){
+        AppCompatButton[] btns = {
+                v.findViewById(R.id.restaurant_ueonBtn),
+                v.findViewById(R.id.restaurant_ugoongBtn),
+                v.findViewById(R.id.restaurant_goongBtn),
+                v.findViewById(R.id.restaurant_bongmyungBtn)
+        };
+
+        for(int i=0;i<btns.length;i++){
+            int index = i;
+
+            btns[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    getData(restaurantList, LOCATION_KEYS[index]);
+                }
+            });
+        }
     }
 }
