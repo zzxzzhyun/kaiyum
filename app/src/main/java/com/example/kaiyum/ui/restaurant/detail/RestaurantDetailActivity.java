@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +19,7 @@ import com.example.kaiyum.data.model.Restaurant;
 import com.example.kaiyum.data.model.Review;
 import com.example.kaiyum.ui.campus.RetrofitClientInstance;
 import com.example.kaiyum.ui.campus.RetrofitService;
+import com.example.kaiyum.ui.review.ReviewActivity;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonNull;
@@ -42,6 +44,10 @@ public class RestaurantDetailActivity extends AppCompatActivity implements OnMap
     private Marker marker = new Marker();
 
     private int rid;
+
+    // for Intent
+    String restaurantName;
+
     double latitude;
     double longitude;
 
@@ -70,6 +76,7 @@ public class RestaurantDetailActivity extends AppCompatActivity implements OnMap
         recyclerView.setAdapter(adapter);
 
         getReviewList();
+        handleWriteReview();
     }
 
     private void getRestaurant(int rid) {
@@ -81,6 +88,8 @@ public class RestaurantDetailActivity extends AppCompatActivity implements OnMap
                 JsonObject menu = response.body();
 
                 Restaurant r = new Restaurant();
+
+                restaurantName = menu.get("name").getAsString();
 
                 r.setId(rid);
                 r.setName(menu.get("name").getAsString());
@@ -202,5 +211,20 @@ public class RestaurantDetailActivity extends AppCompatActivity implements OnMap
         }
 
         adapter.notifyDataSetChanged();
+    }
+
+    private void handleWriteReview(){
+        Button writeBtn = findViewById(R.id.restaurantDetail_reviewBtn);
+
+        writeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RestaurantDetailActivity.this, ReviewActivity.class);
+                intent.putExtra("restaurantName", restaurantName);
+                intent.putExtra("rid", rid);
+
+                startActivity(intent);
+            }
+        });
     }
 }

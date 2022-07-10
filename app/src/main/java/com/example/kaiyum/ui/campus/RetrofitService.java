@@ -1,5 +1,6 @@
 package com.example.kaiyum.ui.campus;
 
+import com.example.kaiyum.data.model.Review;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -8,6 +9,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -28,4 +30,10 @@ public interface RetrofitService {
 
     @GET("review/restaurant/{rid}")
     Call<JsonArray> getReviewsByRID(@Path("rid") int rid);
+
+    @GET("user")
+    Call<JsonObject> getUserByUNID(@Query("unid") long unid);
+
+    @POST("review")
+    Call<JsonObject> addReview(@Body Review review);
 }
