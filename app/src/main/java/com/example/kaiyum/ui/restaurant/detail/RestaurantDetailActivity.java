@@ -1,21 +1,21 @@
 package com.example.kaiyum.ui.restaurant.detail;
 
-import static com.example.kaiyum.ui.restaurant.detail.MapFragment.naverMap;
-import static com.example.kaiyum.ui.restaurant.detail.MapFragment.setMarker;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.kaiyum.R;
 import com.example.kaiyum.data.model.Restaurant;
+import com.example.kaiyum.data.model.Review;
 import com.example.kaiyum.ui.campus.RetrofitClientInstance;
 import com.example.kaiyum.ui.campus.RetrofitService;
 import com.google.gson.JsonArray;
@@ -30,17 +30,22 @@ import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.overlay.OverlayImage;
 
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RestaurantDetailActivity extends AppCompatActivity implements OnMapReadyCallback{
+public class RestaurantDetailActivity extends AppCompatActivity implements OnMapReadyCallback {
     private MapView mapView;
     public static NaverMap naverMap;
     private Marker marker = new Marker();
 
+    private int rid;
     double latitude;
     double longitude;
+
+    public RestaurantDetailReviewRecyclerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +58,18 @@ public class RestaurantDetailActivity extends AppCompatActivity implements OnMap
         mapView.getMapAsync(this);
 
         Intent intent = getIntent();
-        getRestaurant(Integer.parseInt(intent.getStringExtra("rid")));
+        rid = Integer.parseInt(intent.getStringExtra("rid"));
+        getRestaurant(rid);
+
+        adapter = new RestaurantDetailReviewRecyclerAdapter();
+
+        RecyclerView recyclerView = findViewById(R.id.restaurantDetail_review_recyclerView);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(adapter);
+
+        getReviewList();
     }
 
     private void getRestaurant(int rid) {
@@ -74,9 +90,9 @@ public class RestaurantDetailActivity extends AppCompatActivity implements OnMap
                 r.setX(Double.parseDouble(menu.get("x").getAsString()));
                 r.setY(Double.parseDouble(menu.get("y").getAsString()));
 
-                if(menu.get("img") == JsonNull.INSTANCE) {
+                if (menu.get("img") == JsonNull.INSTANCE) {
                     r.setImageURL("");
-                }else{
+                } else {
                     r.setImageURL(menu.get("img").getAsString());
                 }
 
@@ -103,7 +119,7 @@ public class RestaurantDetailActivity extends AppCompatActivity implements OnMap
         reviewCount.setText("" + r.getReviewCount());
 
         // imageURL이 빈 문자열이다 == 미리보기 이미지가 없다.
-        if(!r.getImageURL().equals("")){
+        if (!r.getImageURL().equals("")) {
             Glide.with(getApplicationContext()).load(r.getImageURL()).into(img);
         }
 
@@ -141,5 +157,50 @@ public class RestaurantDetailActivity extends AppCompatActivity implements OnMap
         naverMap.setCameraPosition(cameraPosition);
 
         setMarker(marker, latitude, longitude, R.drawable.restauranticon, 1);
+    }
+
+    private ArrayList<Review> getReviewList() {
+        ArrayList<Review> reviewList = new ArrayList<>();
+
+        RetrofitService service = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<JsonArray> call = service.getReviewsByRID(rid);
+        call.enqueue(new Callback<JsonArray>() {
+            @Override
+            public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
+                JsonArray reviews = response.body();
+
+                for (JsonElement object : reviews) {
+                    Review r = new Review();
+
+                    r.setUserName(object.getAsJsonObject().get("nickname").getAsString());
+                    r.setText(object.getAsJsonObject().get("text").getAsString());
+                    r.setScore(object.getAsJsonObject().get("score").getAsInt());
+
+                    reviewList.add(r);
+                }
+
+                getData(reviewList);
+            }
+
+            @Override
+            public void onFailure(Call<JsonArray> call, Throwable t) {
+                Log.e("jsonerror", t.getMessage());
+            }
+        });
+
+        return reviewList;
+    }
+
+    private void getData(ArrayList<Review> list) {
+        for (Review r : list) {
+            Review data = new Review();
+
+            data.setUserName(r.getUserName());
+            data.setScore(r.getScore());
+            data.setText(r.getText());
+            adapter.addItem(data);
+        }
+
+        adapter.notifyDataSetChanged();
     }
 }

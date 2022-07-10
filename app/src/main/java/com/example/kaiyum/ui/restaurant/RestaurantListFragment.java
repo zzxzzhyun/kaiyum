@@ -114,7 +114,6 @@ public class RestaurantListFragment extends Fragment {
             data.setReviewCount(r.getReviewCount());
             data.setImageURL(r.getImageURL());
 
-            Log.d("check", data.toString());
             adapter.addItem(data);
         }
 

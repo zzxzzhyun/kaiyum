@@ -21,8 +21,11 @@ public interface RetrofitService {
     Call<JsonArray> getRestaurants(@Query("location") String location);
 
     @GET("restaurant/detail/{rid}")
-    Call<JsonObject> getRestaurantByRID(@Path("rid")int rid);
+    Call<JsonObject> getRestaurantByRID(@Path("rid") int rid);
 
     @GET("restaurant/search")
     Call<JsonArray> getRestaurantsBySearch(@Query("key") String key);
+
+    @GET("review/restaurant/{rid}")
+    Call<JsonArray> getReviewsByRID(@Path("rid") int rid);
 }
