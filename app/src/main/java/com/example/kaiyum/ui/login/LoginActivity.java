@@ -56,6 +56,11 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         KakaoSdk.init(this, getString(R.string.kakao_native_key));
 
+        if(isLogin()){
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
+
         btn_login = findViewById(R.id.btn_login);
 
         btn_login.setOnClickListener(new View.OnClickListener() {
@@ -108,12 +113,11 @@ public class LoginActivity extends AppCompatActivity {
     private void updateKakaoLogin() {
         UserApiClient.getInstance().me((user, throwable) -> {
             if (user != null) {
-                Log.i("[카카오] 로그인 정보", user.toString());
                 userId = user.getId();
-                Log.i("[카카오] 로그인 정보", userId + "");
                 checkExistingUser();
             } else {
                 // 로그인 실패
+                Toast.makeText(getApplicationContext(), "로그인에 실패했어요.ㅜㅜ", Toast.LENGTH_SHORT);
             }
             return null;
         });
@@ -173,5 +177,17 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    public boolean isLogin(){
+        final boolean[] ret = {false};
 
+        UserApiClient.getInstance().me((user, throwable) -> {
+            if (user != null) {
+                ret[0] = true;
+            }
+
+            return null;
+        });
+
+        return ret[0];
+    }
 }
