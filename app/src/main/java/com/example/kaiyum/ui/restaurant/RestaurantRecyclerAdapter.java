@@ -62,6 +62,8 @@ public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRe
         listData.add(data);
     }
 
+    public void deleteAllItem() { listData.clear(); }
+
     class ItemViewHolder extends RecyclerView.ViewHolder {
         private TextView id;
         private TextView name;
