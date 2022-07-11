@@ -94,7 +94,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         );
         naverMap.setCameraPosition(cameraPosition);
 
-        setMarker(marker, latitude, longitude, R.drawable.restauranticon, 1);
+        setMarker(marker, latitude, longitude, R.drawable.ic_round_restaurant_24, 1);
     }
 
     @Override

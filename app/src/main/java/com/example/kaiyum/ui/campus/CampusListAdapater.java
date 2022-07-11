@@ -4,12 +4,14 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kaiyum.R;
@@ -50,14 +52,17 @@ public class CampusListAdapater extends RecyclerView.Adapter<CampusListAdapater.
         return new MyViewHolder(view);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.campus_cafeteria.setText(findName(mData.get(position)));
         if (status) {
-            holder.campus_cafeteria.setTextColor(R.color.secondary_color);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                holder.campus_cafeteria.setTextColor(mContext.getColor(R.color.green_dark));
+            }
         } else {
-            holder.campus_cafeteria.setTextColor(R.color.highlight_color);
+            holder.campus_cafeteria.setTextColor(mContext.getColor(R.color.highlight_color));
         }
         holder.campus_cafeteria.setOnClickListener(new View.OnClickListener() {
             @Override

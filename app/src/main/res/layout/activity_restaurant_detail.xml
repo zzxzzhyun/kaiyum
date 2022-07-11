@@ -18,7 +18,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@android:color/darker_gray" />
+            tools:srcCompat="@android:color/darker_gray"
+            android:scaleType="centerCrop"/>
 
         <TextView
             android:id="@+id/restaurantDetail_name"
@@ -28,9 +29,11 @@
             android:text="존맛탱"
             android:textSize="28sp"
             android:textStyle="bold"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/restaurantDetail_mainImage" />
+            app:layout_constraintTop_toBottomOf="@+id/restaurantDetail_mainImage"
+            android:fontFamily="@font/nanumgothicextrabold"/>
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -51,6 +54,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_weight="0"
+                android:layout_marginEnd="5dp"
                 app:srcCompat="@android:drawable/btn_star_big_on" />
 
             <TextView
@@ -58,6 +62,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
+                android:textColor="@color/black"
+                android:fontFamily="@font/nanumgothic"
                 android:text="5.0" />
 
             <TextView
@@ -65,7 +71,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text=" / 리뷰 : "
+                android:textColor="@color/black"
+                android:text="  리뷰 "
+                android:fontFamily="@font/nanumgothic"
                 android:textAlignment="textEnd" />
 
             <TextView
@@ -73,6 +81,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
+                android:fontFamily="@font/nanumgothic"
+                android:textColor="@color/black"
                 android:text="0" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -80,11 +90,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
+                android:layout_marginStart="15dp"
                 android:includeFontPadding="false"
+                android:fontFamily="@font/nanumgothicextrabold"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
                 android:text="리뷰 작성"
-                android:textSize="12sp" />
+                android:textColor="@color/black"
+                android:textSize="15sp" />
 
         </LinearLayout>
 
@@ -92,9 +105,11 @@
             android:id="@+id/restaurantDetail_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_weight="1"
+            android:fontFamily="@font/nanumgothic"
             android:text="어은동"
+            android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
