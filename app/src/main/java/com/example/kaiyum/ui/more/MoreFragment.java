@@ -1,14 +1,22 @@
 package com.example.kaiyum.ui.more;
 
+import static android.content.ContentValues.TAG;
+
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.example.kaiyum.MainActivity;
 import com.example.kaiyum.R;
+import com.example.kaiyum.ui.login.LoginActivity;
+import com.kakao.sdk.user.UserApiClient;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,12 +63,34 @@ public class MoreFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_more, container, false);
+        View root = inflater.inflate(R.layout.fragment_more, container, false);
+
+        TextView logout_btn = root.findViewById(R.id.btn_logout);
+        logout_btn.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                UserApiClient.getInstance().logout(error -> {
+                    if (error != null) {
+                        Log.e(TAG, "로그아웃 실패, SDK에서 토큰 삭제됨", error);
+                    }else{
+                        Log.e(TAG, "로그아웃 성공, SDK에서 토큰 삭제됨");
+                        Intent intent = new Intent(getContext(), LoginActivity.class);
+                        startActivity(intent);
+                    }
+                    return null;
+                });
+            }
+        });
+        return root;
+
+
     }
 }
