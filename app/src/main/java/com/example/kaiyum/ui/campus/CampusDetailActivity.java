@@ -66,6 +66,9 @@ public class CampusDetailActivity extends AppCompatActivity {
             case "east2":
                 title = "동맛골(동측 교직원식당)";
                 break;
+            case "emp":
+                title = "교수회관";
+                break;
             default:
                 title = "Invalid cafeteria";
                 break;
