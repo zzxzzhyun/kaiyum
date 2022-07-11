@@ -65,7 +65,7 @@
                 android:layout_weight="0"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="4dp"
-                app:srcCompat="@android:drawable/btn_star_big_on"></ImageView>
+                app:srcCompat="@drawable/star_on"></ImageView>
 
             <TextView
                 android:id="@+id/restaurant_score"

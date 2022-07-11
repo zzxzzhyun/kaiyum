@@ -6,73 +6,78 @@
     android:layout_height="match_parent"
     tools:context=".ui.review.ReviewActivity">
 
-    <TextView
-        android:id="@+id/review_userName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
-        android:text="사용자"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/review_restaurantName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/nanumgothicextrabold"
         android:text="식당"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/review_userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/nanumgothic"
+        android:text="사용자"
+        android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/review_userName" />
+        app:layout_constraintTop_toBottomOf="@id/review_restaurantName" />
+
 
     <LinearLayout
         android:id="@+id/review_starLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="48dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/review_restaurantName">
+        app:layout_constraintTop_toBottomOf="@+id/review_userName">
 
         <ImageView
             android:id="@+id/review_star1"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/star_off" />
 
         <ImageView
             android:id="@+id/review_star2"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/star_off" />
 
         <ImageView
             android:id="@+id/review_star3"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/star_off" />
 
         <ImageView
             android:id="@+id/review_star4"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/star_off" />
 
         <ImageView
             android:id="@+id/review_star5"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/star_off" />
     </LinearLayout>
@@ -81,10 +86,11 @@
         android:id="@+id/review_scoreComment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="맛집을 평가해주세요."
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/nanumgothicbold"
+        android:text="맛집을 평가해주세요"
+        android:textColor="@color/black"
         android:textSize="16sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/review_starLayout" />
@@ -92,12 +98,14 @@
     <EditText
         android:id="@+id/review_textInput"
         android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/lightgrey"
+        android:layout_height="180dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/radiussearch"
+        android:backgroundTint="@color/green_lighter"
         android:ems="15"
+        android:fontFamily="@font/nanumgothic"
         android:gravity="start|top"
-        android:hint="리뷰 작성"
+        android:hint="리뷰 작성하기"
         android:inputType="textMultiLine"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -107,32 +115,46 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/review_imageUploadBtn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="사진 고르기"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/border"
+        android:drawableTop="@drawable/ic_baseline_add_a_photo_24"
+        android:paddingTop="5dp"
+        android:text="사진 추가"
+        app:layout_constraintEnd_toStartOf="@id/review_imageStatusTextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/review_imageStatusTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/review_textInput" />
 
     <TextView
         android:id="@+id/review_imageStatusTextView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="사진 첨부"
+        android:layout_height="0dp"
+        android:layout_marginStart="-50dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/nanumgothicbold"
+        android:text="사진을 첨부해보세요!"
+        android:textColor="@color/highlight_color"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/review_textInput" />
+        app:layout_constraintStart_toEndOf="@id/review_imageUploadBtn"
+        app:layout_constraintTop_toBottomOf="@id/review_textInput" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/review_uploadReviewBtn"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="70dp"
+        android:background="@drawable/border"
+        android:backgroundTint="@color/green_light"
+        android:fontFamily="@font/nanumgothicbold"
         android:text="제출하기"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/review_imageUploadBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

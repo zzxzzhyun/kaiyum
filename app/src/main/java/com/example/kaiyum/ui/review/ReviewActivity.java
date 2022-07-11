@@ -1,6 +1,7 @@
 package com.example.kaiyum.ui.review;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -9,6 +10,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -178,6 +180,7 @@ public class ReviewActivity extends AppCompatActivity {
     }
 
     // 사진 선택 후 이미지 비트맵으로 전환
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint("Range")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -185,8 +188,8 @@ public class ReviewActivity extends AppCompatActivity {
         TextView imgStatusTextView = findViewById(R.id.review_imageStatusTextView);
 
         if (requestCode == CODE_ALBUM_REQUEST && resultCode == RESULT_OK && data != null) {
-            imgStatusTextView.setText("사진 준비 완료");
-
+            imgStatusTextView.setText("사진 업로드 완료!");
+            imgStatusTextView.setTextColor(getColor(R.color.green_dark));
             // 받아온 사진 URI를 cursor를 이용하여 PATH 저장
             selectedImage = data.getData();
 
