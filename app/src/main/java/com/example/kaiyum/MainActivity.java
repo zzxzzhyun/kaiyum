@@ -1,6 +1,7 @@
 package com.example.kaiyum;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -15,6 +16,8 @@ import com.example.kaiyum.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private final long finishtimeed = 1000;
+    private long backKeyPressTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,4 +38,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        long tempTime = System.currentTimeMillis();
+        long intervalTime = tempTime - backKeyPressTime;
+
+        if (0 <= intervalTime && finishtimeed >= intervalTime) {
+            // 앱 전체 종료
+            finishAffinity();
+            System.runFinalization();
+            System.exit(0);
+        } else {
+            backKeyPressTime = tempTime;
+            Toast.makeText(getApplicationContext(), "한번더 누르시면 앱이 종료됩니다", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

@@ -2,10 +2,13 @@ package com.example.kaiyum.ui.campus;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.kaiyum.MainActivity;
 import com.example.kaiyum.R;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -48,23 +51,32 @@ public class CampusDetailActivity extends AppCompatActivity {
 
     }
 
-    public String findName (String name){
+    public String findName(String name) {
         String title;
         switch (name) {
-            case "fclt": title = "카이마루(북측카페테리아)";
+            case "fclt":
+                title = "카이마루(북측카페테리아)";
                 break;
-            case "west": title = "서맛골(서측식당)";
+            case "west":
+                title = "서맛골(서측식당)";
                 break;
-            case "east1": title = "동맛골(동측학생식당)";
+            case "east1":
+                title = "동맛골(동측학생식당)";
                 break;
-            case "east2": title = "동맛골(동측 교직원식당)";
+            case "east2":
+                title = "동맛골(동측 교직원식당)";
                 break;
-            default: title = "Invalid cafeteria";
+            default:
+                title = "Invalid cafeteria";
                 break;
         }
 
         return title;
     }
 
-
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(CampusDetailActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
 }
