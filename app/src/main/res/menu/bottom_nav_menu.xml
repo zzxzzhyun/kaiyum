@@ -3,7 +3,9 @@
 
     <item
         android:id="@+id/navigation_campus"
-        android:title="교내" />
+        android:title="교내"
+
+        />
 
     <item
         android:id="@+id/navigation_outCampus"

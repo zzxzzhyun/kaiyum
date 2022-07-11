@@ -5,38 +5,76 @@
     android:id="@+id/test"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
     tools:context=".ui.campus.CampusFragment">
 
-    <TextView
-        android:id="@+id/open_campus_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="영업중"
+
+    <LinearLayout
+        android:id="@+id/campus_top"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/round_outline"
+        android:gravity="top|center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/campus_bottom"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></TextView>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/open_campus_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/open_campus_title"
-        />
+        <TextView
+            android:id="@+id/open_campus_title"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:fontFamily="casual"
+            android:gravity="top|center_horizontal"
+            android:text="영업중"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp"></TextView>
 
-    <TextView
-        android:id="@+id/close_campus_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/close_campus_list"
-        android:text="영업종료"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/open_campus_list"></TextView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/open_campus_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:nestedScrollingEnabled="false" />
+    </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/close_campus_list"
-        android:layout_width="match_parent"
-
-        android:layout_height="300dp"
+    <LinearLayout
+        android:id="@+id/campus_bottom"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/round_outline"
+        android:gravity="top|center_horizontal"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/close_campus_title" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/campus_top">
+
+        <TextView
+            android:id="@+id/close_campus_title"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:fontFamily="casual"
+            android:gravity="top|center_horizontal"
+            android:text="영업종료"
+            android:textSize="20sp"
+            android:textStyle="bold"></TextView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/close_campus_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+
+            />
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

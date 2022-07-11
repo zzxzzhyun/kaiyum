@@ -8,11 +8,15 @@
 
     <TextView
         android:id="@+id/foodlist_item_id"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="3dp"
-        android:paddingBottom="3dp"
-        android:textSize="15dp"
         android:clickable="true"
-        android:text="campus 1"></TextView>
+        android:fontFamily="@font/nanumgothic"
+        android:gravity="center"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:text="campus 1"
+        android:textSize="16sp">
+
+    </TextView>
 </LinearLayout>
