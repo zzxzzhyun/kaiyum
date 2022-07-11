@@ -124,7 +124,7 @@ public class RestaurantDetailActivity extends AppCompatActivity implements OnMap
 
         name.setText(r.getName());
         location.setText(r.getLocation());
-        score.setText("" + r.getScore());
+        score.setText(String.format("%.1f", r.getScore()));
         reviewCount.setText("" + r.getReviewCount());
 
         // imageURL이 빈 문자열이다 == 미리보기 이미지가 없다.

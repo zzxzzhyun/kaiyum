@@ -4,9 +4,9 @@ public class Review {
     private long unid;
     private int rid;
     private String userName;
+    private String restaurantName;
     private int score;
     private String text;
-    private String bitmap;
     private String imgUrl;
 
     public long getUnid() {
@@ -33,6 +33,14 @@ public class Review {
         this.userName = userName;
     }
 
+    public String getRestaurantName() {
+        return restaurantName;
+    }
+
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName = restaurantName;
+    }
+
     public int getScore() {
         return score;
     }
@@ -49,14 +57,6 @@ public class Review {
         this.text = text;
     }
 
-    public String getBitmap() {
-        return bitmap;
-    }
-
-    public void setBitmap(String bitmap) {
-        this.bitmap = bitmap;
-    }
-
     public String getImgUrl() {
         return imgUrl;
     }
@@ -71,6 +71,7 @@ public class Review {
                 "unid=" + unid +
                 ", rid=" + rid +
                 ", userName='" + userName + '\'' +
+                ", restaurantName='" + restaurantName + '\'' +
                 ", score=" + score +
                 ", text='" + text + '\'' +
                 ", imgUrl='" + imgUrl + '\'' +
