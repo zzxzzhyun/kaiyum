@@ -51,11 +51,11 @@
 
             <ImageView
                 android:id="@+id/imageView3"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="17dp"
+                android:layout_height="17dp"
                 android:layout_weight="0"
                 android:layout_marginEnd="5dp"
-                app:srcCompat="@android:drawable/btn_star_big_on" />
+                app:srcCompat="@drawable/star_on" />
 
             <TextView
                 android:id="@+id/restaurantDetail_score"
@@ -81,21 +81,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:fontFamily="@font/nanumgothic"
+                android:fontFamily="@font/nanumgothicextrabold"
                 android:textColor="@color/black"
                 android:text="0" />
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_baseline_edit_24"
+                android:layout_marginStart="40dp"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/restaurantDetail_reviewBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:layout_marginStart="15dp"
+                android:layout_marginStart="-12dp"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/nanumgothicextrabold"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
-                android:text="리뷰 작성"
+                android:text="리뷰쓰기"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 

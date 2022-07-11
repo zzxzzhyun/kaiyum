@@ -36,13 +36,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="어은동" />
+            android:background="@drawable/round_button"
+            android:fontFamily="@font/nanumgothic"
+            android:text="어은동"
+            android:textColor="@color/black" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/restaurant_ugoongBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/round_button"
+            android:textColor="@color/black"
+            android:fontFamily="@font/nanumgothic"
             android:text="어궁동" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -50,6 +56,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/round_button"
+            android:textColor="@color/black"
+            android:fontFamily="@font/nanumgothic"
             android:text="궁동" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -57,6 +66,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/round_button"
+            android:textColor="@color/black"
+            android:fontFamily="@font/nanumgothic"
             android:text="봉명동" />
     </LinearLayout>
 
