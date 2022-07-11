@@ -185,6 +185,10 @@ public class RestaurantDetailActivity extends AppCompatActivity implements OnMap
                     r.setText(object.getAsJsonObject().get("text").getAsString());
                     r.setScore(object.getAsJsonObject().get("score").getAsInt());
 
+                    if(!object.getAsJsonObject().get("img").isJsonNull()){
+                        r.setImgUrl(object.getAsJsonObject().get("img").getAsString());
+                    }
+
                     reviewList.add(r);
                 }
 
@@ -207,6 +211,7 @@ public class RestaurantDetailActivity extends AppCompatActivity implements OnMap
             data.setUserName(r.getUserName());
             data.setScore(r.getScore());
             data.setText(r.getText());
+            data.setImgUrl(r.getImgUrl());
             adapter.addItem(data);
         }
 
