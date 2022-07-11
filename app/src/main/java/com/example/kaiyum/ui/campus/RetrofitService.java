@@ -47,4 +47,7 @@ public interface RetrofitService {
     @Multipart
     @POST("review/image")
     Call<JsonObject> addReviewImage(@Part MultipartBody.Part file, @Query("reviewId") int review_id);
+
+    @GET("review/user/{unid}")
+    Call<JsonArray> getReviewsByUNID(@Path("unid") long unid);
 }

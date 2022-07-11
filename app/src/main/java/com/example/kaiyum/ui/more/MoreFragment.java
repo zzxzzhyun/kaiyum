@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.example.kaiyum.MainActivity;
 import com.example.kaiyum.R;
 import com.example.kaiyum.ui.login.LoginActivity;
+import com.example.kaiyum.ui.review.MyReviewActivity;
 import com.kakao.sdk.user.UserApiClient;
 
 /**
@@ -72,7 +73,26 @@ public class MoreFragment extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_more, container, false);
 
-        TextView logout_btn = root.findViewById(R.id.btn_logout);
+        handleLogout(root);
+        handleMyReviewBtn(root);
+
+        return root;
+    }
+
+    private void handleMyReviewBtn(View v){
+        TextView myReviewBtn = v.findViewById(R.id.more_myReviewBtn);
+
+        myReviewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), MyReviewActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void handleLogout(View v){
+        TextView logout_btn = v.findViewById(R.id.btn_logout);
         logout_btn.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -89,8 +109,5 @@ public class MoreFragment extends Fragment {
                 });
             }
         });
-        return root;
-
-
     }
 }

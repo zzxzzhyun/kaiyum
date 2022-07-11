@@ -124,7 +124,7 @@ public class RestaurantDetailActivity extends AppCompatActivity implements OnMap
 
         name.setText(r.getName());
         location.setText(r.getLocation());
-        score.setText("" + r.getScore());
+        score.setText(String.format("%.1f", r.getScore()));
         reviewCount.setText("" + r.getReviewCount());
 
         // imageURL이 빈 문자열이다 == 미리보기 이미지가 없다.
@@ -185,6 +185,10 @@ public class RestaurantDetailActivity extends AppCompatActivity implements OnMap
                     r.setText(object.getAsJsonObject().get("text").getAsString());
                     r.setScore(object.getAsJsonObject().get("score").getAsInt());
 
+                    if(!object.getAsJsonObject().get("img").isJsonNull()){
+                        r.setImgUrl(object.getAsJsonObject().get("img").getAsString());
+                    }
+
                     reviewList.add(r);
                 }
 
@@ -207,6 +211,7 @@ public class RestaurantDetailActivity extends AppCompatActivity implements OnMap
             data.setUserName(r.getUserName());
             data.setScore(r.getScore());
             data.setText(r.getText());
+            data.setImgUrl(r.getImgUrl());
             adapter.addItem(data);
         }
 

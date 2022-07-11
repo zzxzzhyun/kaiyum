@@ -37,7 +37,7 @@ public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRe
         holder.id.setText("" + restaurant.getId());
         holder.name.setText(restaurant.getName());
         holder.reviewCount.setText("" + restaurant.getReviewCount());
-        holder.score.setText("" + restaurant.getScore());
+        holder.score.setText(String.format("%.1f", restaurant.getScore()));
         holder.location.setText(restaurant.getLocation());
 
         // Image URL로 사진 교체
