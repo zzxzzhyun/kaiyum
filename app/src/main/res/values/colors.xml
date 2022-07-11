@@ -12,8 +12,9 @@
     <color name = "mustard">#F8C74F</color>
     <color name = "mustard_light">#FFEBA2</color>
     <color name = "mustard_lighter">#FFFFF0</color>
-    <color name = "green">#16DAA3</color>
+    <color name = "green">#00FFB7</color>
     <color name = "green_light">#ADFFE8</color>
+    <color name="green_dark">#00B557</color>
     <color name = "red">#F84F4F</color>
 
     <color name = "primary_color"> @color/mustard </color>

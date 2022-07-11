@@ -4,15 +4,17 @@
     <item
         android:id="@+id/navigation_campus"
         android:title="교내"
-
+        android:icon="@drawable/ic_outline_school_24"
         />
 
     <item
         android:id="@+id/navigation_outCampus"
-        android:title="맛집" />
+        android:title="맛집"
+        />
 
     <item
         android:id="@+id/navigation_more"
+        android:icon="@drawable/ic_baseline_more_horiz_24"
         android:title="더보기" />
 
 </menu>

@@ -42,7 +42,7 @@ public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRe
 
         // Image URL로 사진 교체
         if(restaurant.getImageURL().equals("")){
-            holder.thumbnail.setImageResource(R.drawable.restauranticon);
+            holder.thumbnail.setImageResource(R.drawable.ic_round_restaurant_24);
         }else{
             Glide.with(view.getContext()).load(restaurant.getImageURL()).into(holder.thumbnail);
         }

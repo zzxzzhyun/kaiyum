@@ -165,7 +165,7 @@ public class RestaurantDetailActivity extends AppCompatActivity implements OnMap
         );
         naverMap.setCameraPosition(cameraPosition);
 
-        setMarker(marker, latitude, longitude, R.drawable.restauranticon, 1);
+        setMarker(marker, latitude, longitude, R.drawable.ic_baseline_location_on_24, 1);
     }
 
     private ArrayList<Review> getReviewList() {
