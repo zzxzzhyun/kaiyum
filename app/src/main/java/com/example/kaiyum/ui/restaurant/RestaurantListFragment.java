@@ -1,7 +1,11 @@
 package com.example.kaiyum.ui.restaurant;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -183,10 +187,12 @@ public class RestaurantListFragment extends Fragment {
 
         for(int i=0;i<btns.length;i++){
             int index = i;
-
             btns[i].setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onClick(View view) {
+                    btns[index].setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button));
+                    btns[index].setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#F8C74F")));
                     getData(restaurantList, LOCATION_KEYS[index]);
                 }
             });

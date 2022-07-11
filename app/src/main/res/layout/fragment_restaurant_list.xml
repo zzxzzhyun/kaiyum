@@ -6,70 +6,85 @@
     android:layout_height="match_parent"
     tools:context=".ui.restaurant.RestaurantListFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <SearchView
-        android:id="@+id/restaurant_searchView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:iconifiedByDefault="false"
-        android:padding="5dp"
-        android:queryBackground="@drawable/radiussearch"
-        android:queryHint="식당 이름 검색"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/restaurant_searchView">
+        android:id="@+id/restaurant_top"
+        android:layout_width="380dp"
+        android:layout_height="105dp"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/restaurant_ueonBtn"
-            android:layout_width="wrap_content"
+        <SearchView
+            android:id="@+id/restaurant_searchView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/round_button"
-            android:fontFamily="@font/nanumgothic"
-            android:text="어은동"
-            android:textColor="@color/black" />
+            android:layout_marginTop="4dp"
+            android:background="@drawable/radiussearch"
+            android:iconifiedByDefault="false"
+            android:padding="5dp"
+            android:queryBackground="@drawable/radiussearch"
+            android:queryHint="식당 이름 검색"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/restaurant_ugoongBtn"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/round_button"
-            android:textColor="@color/black"
-            android:fontFamily="@font/nanumgothic"
-            android:text="어궁동" />
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/restaurant_searchView">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/restaurant_goongBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/round_button"
-            android:textColor="@color/black"
-            android:fontFamily="@font/nanumgothic"
-            android:text="궁동" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/restaurant_ueonBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/round_button"
+                android:backgroundTint="@color/background_color"
+                android:fontFamily="@font/nanumgothic"
+                android:text="어은동"
+                android:textColor="@color/black" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/restaurant_bongmyungBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/round_button"
-            android:textColor="@color/black"
-            android:fontFamily="@font/nanumgothic"
-            android:text="봉명동" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/restaurant_ugoongBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/round_button"
+                android:backgroundTint="@color/background_color"
+                android:fontFamily="@font/nanumgothic"
+                android:text="어궁동"
+                android:textColor="@color/black" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/restaurant_goongBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/round_button"
+                android:backgroundTint="@color/background_color"
+                android:fontFamily="@font/nanumgothic"
+                android:text="궁동"
+                android:textColor="@color/black" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/restaurant_bongmyungBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/round_button"
+                android:backgroundTint="@color/background_color"
+                android:fontFamily="@font/nanumgothic"
+                android:text="봉명동"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -79,6 +94,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+        app:layout_constraintTop_toBottomOf="@id/restaurant_top" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
