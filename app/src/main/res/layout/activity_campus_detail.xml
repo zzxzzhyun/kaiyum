@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/detail_activity">
+    android:id="@+id/detail_activity"
+    android:background="@color/background_color">
 
     <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -18,39 +19,70 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="TextView"
+            android:textSize="20sp"
+            android:fontFamily="@font/nanumgothicextrabold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/campus_detail_content1"
-            android:layout_width="wrap_content"
+            android:id="@+id/morning_title"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="24dp"
-            android:text="TextView"
-            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/nanumgothicbold"
+            android:gravity="center_horizontal"
+            android:text="조식"
+            android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/campus_detail_title" />
 
         <TextView
-            android:id="@+id/campus_detail_content2"
-            android:layout_width="wrap_content"
+            android:id="@+id/campus_detail_content1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="24dp"
             android:text="TextView"
             app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/morning_title" />
+
+        <TextView
+            android:id="@+id/lunch_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="중식"
+            android:fontFamily="@font/nanumgothicbold"
             app:layout_constraintTop_toBottomOf="@id/campus_detail_content1" />
 
         <TextView
+            android:id="@+id/campus_detail_content2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="0dp"
+            android:text="TextView"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lunch_title" />
+
+        <TextView
+            android:id="@+id/dinner_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:text="석식"
+            app:layout_constraintTop_toBottomOf="@id/campus_detail_content2"
+            android:fontFamily="@font/nanumgothicbold"/>
+
+        <TextView
             android:id="@+id/campus_detail_content3"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="24dp"
             android:text="TextView"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/campus_detail_content2" />
+            app:layout_constraintTop_toBottomOf="@id/dinner_title" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

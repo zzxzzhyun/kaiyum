@@ -124,18 +124,19 @@ public class CampusFragment extends Fragment {
 
         RecyclerView openrv = root.findViewById(R.id.open_campus_list);
         if (!openArr.isEmpty()){
-        CampusListAdapater openAdapter = new CampusListAdapater(requireContext(), openArr);
+        CampusListAdapater openAdapter = new CampusListAdapater(requireContext(), openArr, true);
         openrv.setAdapter(openAdapter);
         openrv.setLayoutManager(new LinearLayoutManager(requireContext()));}
 
         RecyclerView closerv = root.findViewById(R.id.close_campus_list);
         if (!closeArr.isEmpty()){
-        CampusListAdapater closeAdapter = new CampusListAdapater(requireContext(), closeArr);
+        CampusListAdapater closeAdapter = new CampusListAdapater(requireContext(), closeArr, false);
         closerv.setAdapter(closeAdapter);
         closerv.setLayoutManager(new LinearLayoutManager(requireContext()));}
 
         return root;
     }
+
 
 
 }
