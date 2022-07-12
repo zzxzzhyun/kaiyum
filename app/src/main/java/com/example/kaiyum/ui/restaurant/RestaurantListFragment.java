@@ -1,7 +1,9 @@
 package com.example.kaiyum.ui.restaurant;
 
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,10 +22,9 @@ import com.example.kaiyum.ui.campus.RetrofitService;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonNull;
-import com.google.gson.JsonObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,6 +33,7 @@ import retrofit2.Response;
 public class RestaurantListFragment extends Fragment {
     private RestaurantRecyclerAdapter adapter;
     private ArrayList<Restaurant> restaurantList;
+    HashMap<String, Boolean> selectedLocation = new HashMap<>();
 
     private String[] LOCATION_KEYS = {
             "ueon",
@@ -64,6 +66,9 @@ public class RestaurantListFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_restaurant_list, container, false);
         adapter = new RestaurantRecyclerAdapter();
 
+        handleSearch(v);
+        handleLocation(v);
+
         RecyclerView recyclerView = v.findViewById(R.id.restaurant_recyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
 
@@ -72,13 +77,10 @@ public class RestaurantListFragment extends Fragment {
 
         restaurantList = getRestaurantList(v);
 
-        handleSearch(v);
-        handleLocation(v);
-
         return v;
     }
 
-    private ArrayList<Restaurant> getRestaurantList(View v){
+    private ArrayList<Restaurant> getRestaurantList(View v) {
         ArrayList<Restaurant> restaurantList = new ArrayList<>();
 
         RetrofitService service = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
@@ -88,7 +90,7 @@ public class RestaurantListFragment extends Fragment {
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
                 JsonArray menu = response.body();
 
-                for(JsonElement object : menu){
+                for (JsonElement object : menu) {
                     Restaurant r = new Restaurant();
 
                     r.setId(object.getAsJsonObject().get("rid").getAsInt());
@@ -97,16 +99,16 @@ public class RestaurantListFragment extends Fragment {
                     r.setName(object.getAsJsonObject().get("name").getAsString());
                     r.setLocation(object.getAsJsonObject().get("location").getAsString());
 
-                    if(object.getAsJsonObject().get("img") == JsonNull.INSTANCE){
+                    if (object.getAsJsonObject().get("img") == JsonNull.INSTANCE) {
                         r.setImageURL("");
-                    }else{
+                    } else {
                         r.setImageURL(object.getAsJsonObject().get("img").getAsString());
                     }
 
                     restaurantList.add(r);
                 }
 
-                getData(restaurantList, LOCATION_KEYS[0]);
+                getData(restaurantList);
             }
 
             @Override
@@ -118,12 +120,12 @@ public class RestaurantListFragment extends Fragment {
         return restaurantList;
     }
 
-    private void getData(ArrayList<Restaurant> list, String location){
+    private void getData(ArrayList<Restaurant> list) {
         // 초기화
         adapter.deleteAllItem();
 
-        for(Restaurant r : list){
-            if(!(location.equals(LOCATION_ALL) || location.equals(r.getLocation()))){
+        for (Restaurant r : list) {
+            if (!selectedLocation.get(r.getLocation())) {
                 continue;
             }
 
@@ -154,26 +156,30 @@ public class RestaurantListFragment extends Fragment {
         return ret;
     }
 
-    private void handleSearch(View v){
+    private void handleSearch(View v) {
         SearchView searchView = v.findViewById(R.id.restaurant_searchView);
         searchView.isSubmitButtonEnabled();
+
+        for (String location : LOCATION_KEYS) {
+            selectedLocation.put(location, true);
+        }
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                getData(searchList(s), LOCATION_ALL);
+                getData(searchList(s));
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
-                getData(searchList(s), LOCATION_ALL);
+                getData(searchList(s));
                 return true;
             }
         });
     }
 
-    private void handleLocation(View v){
+    private void handleLocation(View v) {
         AppCompatButton[] btns = {
                 v.findViewById(R.id.restaurant_ueonBtn),
                 v.findViewById(R.id.restaurant_ugoongBtn),
@@ -181,13 +187,31 @@ public class RestaurantListFragment extends Fragment {
                 v.findViewById(R.id.restaurant_bongmyungBtn)
         };
 
-        for(int i=0;i<btns.length;i++){
-            int index = i;
+        // location map initialize
+        for (String location : LOCATION_KEYS) {
+            selectedLocation.put(location, false);
+        }
+        selectedLocation.put(LOCATION_KEYS[0], true);
 
+
+        for (int i = 0; i < btns.length; i++) {
+            int index = i;
             btns[i].setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onClick(View view) {
-                    getData(restaurantList, LOCATION_KEYS[index]);
+                    // for toggle
+                    boolean isSelectedNow = selectedLocation.get(LOCATION_KEYS[index]);
+
+                    if(isSelectedNow){
+                        btns[index].setBackground(getResources().getDrawable(R.drawable.round_button_primary));
+                    }else{
+                        btns[index].setBackground(getResources().getDrawable(R.drawable.round_button));
+                    }
+
+                    selectedLocation.put(LOCATION_KEYS[index], !isSelectedNow);
+
+                    getData(restaurantList);
                 }
             });
         }
