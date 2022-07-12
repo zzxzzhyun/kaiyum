@@ -22,7 +22,7 @@
         <entry key="app/src/main/res/layout-w1240dp/activity_login.xml" value="0.249665327978581" />
         <entry key="app/src/main/res/layout-w936dp/activity_login.xml" value="0.2520491803278688" />
         <entry key="app/src/main/res/layout/activity_campus_detail.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.12" />
         <entry key="app/src/main/res/layout/activity_my_review.xml" value="0.21822916666666667" />
         <entry key="app/src/main/res/layout/activity_restaurant_detail.xml" value="0.33" />
@@ -34,7 +34,7 @@
         <entry key="app/src/main/res/layout/fragment_more.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_restaurant_list.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_restaurant_recycler_adapter.xml" value="0.67" />
-        <entry key="app/src/main/res/layout/fragment_restaurantdetail_recyclerview.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_restaurantdetail_recyclerview.xml" value="0.5" />
         <entry key="app/src/main/res/layout/popup.xml" value="0.5" />
       </map>
     </option>

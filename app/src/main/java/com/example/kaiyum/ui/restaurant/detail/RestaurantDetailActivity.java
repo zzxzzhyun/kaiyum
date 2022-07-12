@@ -226,6 +226,7 @@ public class RestaurantDetailActivity extends AppCompatActivity implements OnMap
             data.setText(r.getText());
             data.setImgUrl(r.getImgUrl());
             data.setTimestamp(r.getTimestamp());
+            data.setRestaurantName(r.getRestaurantName());
             adapter.addItem(data);
         }
 
