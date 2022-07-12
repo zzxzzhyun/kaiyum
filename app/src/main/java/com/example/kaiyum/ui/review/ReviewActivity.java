@@ -78,8 +78,7 @@ public class ReviewActivity extends AppCompatActivity {
             if (user != null) {
                 reviewForUpload.setUnid(user.getId());
 
-                // TODO : 사용자 닉네임 불러오기(짜긴 했는데 merge 후 확인 필요)
-                Call<JsonObject> call = service.getUserByUNID(reviewForUpload.getUnid());
+                Call<JsonObject> call = service.getUser(reviewForUpload.getUnid());
                 call.enqueue(new Callback<JsonObject>() {
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {

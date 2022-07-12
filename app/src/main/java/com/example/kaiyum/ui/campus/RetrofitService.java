@@ -10,6 +10,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -22,6 +23,9 @@ public interface RetrofitService {
 
     @POST("user")
     Call<JsonObject> addUser(@Query("unid") Long id, @Query("nickname") String nickname);
+
+    @PUT("user")
+    Call<JsonObject> updateNickname(@Query("unid") Long id, @Query("newNickname") String nickname);
 
     @GET("campus") // url을 제외한 End Point
     Call<JsonObject> getCampus(@Query("name") String body); // get방식
@@ -37,9 +41,6 @@ public interface RetrofitService {
 
     @GET("review/restaurant/{rid}")
     Call<JsonArray> getReviewsByRID(@Path("rid") int rid);
-
-    @GET("user")
-    Call<JsonObject> getUserByUNID(@Query("unid") long unid);
 
     @POST("review")
     Call<JsonObject> addReview(@Body Review review);
