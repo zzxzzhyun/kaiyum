@@ -133,6 +133,8 @@ public class RestaurantDetailActivity extends AppCompatActivity implements OnMap
         // imageURL이 빈 문자열이다 == 미리보기 이미지가 없다.
         if (!r.getImageURL().equals("")) {
             Glide.with(getApplicationContext()).load(r.getImageURL()).into(img);
+        } else {
+            Glide.with(getApplicationContext()).load(R.drawable.ic_round_restaurant_24).into(img);
         }
 
         // TODO : 위도와 경도를 서버에서 받아서 설정하는 코드 추가
