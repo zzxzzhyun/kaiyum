@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kaiyum.R;
@@ -72,6 +74,15 @@ public class MyReviewActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
                 JsonArray reviews = response.body();
+
+                // 내가 쓴 리뷰가 있다면 넙죽이가 안 보이게 하기
+                if(reviews.size() == 0){
+                    ImageView imgView = findViewById(R.id.MyReview_Neopjuk);
+                    TextView textView = findViewById(R.id.MyReview_noReviewText);
+
+                    imgView.bringToFront();
+                    textView.bringToFront();
+                }
 
                 for(JsonElement object : reviews){
                     Review r = new Review();

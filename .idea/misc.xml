@@ -3,37 +3,28 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="../../.gradle/caches/transforms-3/4ac14b983ce8c501bb56501ca3ba6e12/transformed/material-1.6.1/res/drawable-v21/mtrl_navigation_bar_item_background.xml" value="0.2105" />
-        <entry key="app/src/main/res/drawable/border.xml" value="0.365" />
-        <entry key="app/src/main/res/drawable/ic_baseline_account_balance_24.xml" value="0.365" />
-        <entry key="app/src/main/res/drawable/ic_baseline_flatware_24.xml" value="0.238" />
-        <entry key="app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.1775" />
-        <entry key="app/src/main/res/drawable/ic_baseline_more_horiz_24.xml" value="0.365" />
-        <entry key="app/src/main/res/drawable/ic_baseline_restaurant_menu_24.xml" value="0.365" />
-        <entry key="app/src/main/res/drawable/ic_baseline_send_24.xml" value="0.365" />
-        <entry key="app/src/main/res/drawable/ic_outline_school_24.xml" value="0.365" />
-        <entry key="app/src/main/res/drawable/ic_round_restaurant_24.xml" value="0.365" />
-        <entry key="app/src/main/res/drawable/ic_twotone_food_bank_24.xml" value="0.365" />
-        <entry key="app/src/main/res/drawable/radiussearch.xml" value="0.365" />
-        <entry key="app/src/main/res/drawable/round_button.xml" value="0.365" />
-        <entry key="app/src/main/res/drawable/round_outline.xml" value="0.3875" />
-        <entry key="app/src/main/res/font/font_custom.xml" value="0.2713541666666667" />
+        <entry key="..\:/Users/Jay/Desktop/madcamp/kaiyum/app/src/main/res/drawable/radiussearch.xml" value="0.234" />
+        <entry key="..\:/Users/Jay/Desktop/madcamp/kaiyum/app/src/main/res/layout/activity_campus_detail.xml" value="0.1953125" />
+        <entry key="..\:/Users/Jay/Desktop/madcamp/kaiyum/app/src/main/res/layout/activity_login.xml" value="0.271875" />
+        <entry key="..\:/Users/Jay/Desktop/madcamp/kaiyum/app/src/main/res/layout/activity_main.xml" value="0.23697916666666666" />
+        <entry key="..\:/Users/Jay/Desktop/madcamp/kaiyum/app/src/main/res/layout/activity_my_review.xml" value="0.25" />
+        <entry key="..\:/Users/Jay/Desktop/madcamp/kaiyum/app/src/main/res/layout/activity_restaurant_detail.xml" value="0.33" />
+        <entry key="..\:/Users/Jay/Desktop/madcamp/kaiyum/app/src/main/res/layout/activity_review.xml" value="0.25" />
+        <entry key="..\:/Users/Jay/Desktop/madcamp/kaiyum/app/src/main/res/layout/foodlist_item.xml" value="0.271875" />
+        <entry key="..\:/Users/Jay/Desktop/madcamp/kaiyum/app/src/main/res/layout/fragment_campus.xml" value="0.271875" />
+        <entry key="..\:/Users/Jay/Desktop/madcamp/kaiyum/app/src/main/res/layout/fragment_map.xml" value="0.215625" />
+        <entry key="..\:/Users/Jay/Desktop/madcamp/kaiyum/app/src/main/res/layout/fragment_more.xml" value="0.25" />
+        <entry key="..\:/Users/Jay/Desktop/madcamp/kaiyum/app/src/main/res/layout/fragment_restaurant_list.xml" value="0.271875" />
+        <entry key="..\:/Users/Jay/Desktop/madcamp/kaiyum/app/src/main/res/layout/fragment_restaurant_recycler_adapter.xml" value="0.271875" />
+        <entry key="..\:/Users/Jay/Desktop/madcamp/kaiyum/app/src/main/res/layout/fragment_restaurantdetail_recyclerview.xml" value="0.25" />
         <entry key="app/src/main/res/layout-w1240dp/activity_login.xml" value="0.249665327978581" />
         <entry key="app/src/main/res/layout-w936dp/activity_login.xml" value="0.2520491803278688" />
-        <entry key="app/src/main/res/layout/activity_campus_detail.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_campus_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.3342391304347826" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.12" />
-        <entry key="app/src/main/res/layout/activity_my_review.xml" value="0.21822916666666667" />
-        <entry key="app/src/main/res/layout/activity_restaurant_detail.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_review.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/foodlist_item.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/fragment_campus.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_campus.xml" value="0.13191489361702127" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.19630192502532928" />
-        <entry key="app/src/main/res/layout/fragment_map.xml" value="0.3885416666666667" />
-        <entry key="app/src/main/res/layout/fragment_more.xml" value="0.2734375" />
-        <entry key="app/src/main/res/layout/fragment_restaurant_list.xml" value="0.5" />
-        <entry key="app/src/main/res/layout/fragment_restaurant_recycler_adapter.xml" value="0.67" />
-        <entry key="app/src/main/res/layout/fragment_restaurantdetail_recyclerview.xml" value="0.19157608695652173" />
         <entry key="app/src/main/res/layout/popup.xml" value="0.1" />
       </map>
     </option>
