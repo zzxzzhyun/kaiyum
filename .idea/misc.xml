@@ -35,7 +35,7 @@
         <entry key="app/src/main/res/layout/fragment_restaurant_list.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_restaurant_recycler_adapter.xml" value="0.67" />
         <entry key="app/src/main/res/layout/fragment_restaurantdetail_recyclerview.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/popup.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/popup.xml" value="0.5" />
       </map>
     </option>
   </component>

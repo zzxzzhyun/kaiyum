@@ -8,17 +8,18 @@
 
     <LinearLayout
         android:id="@+id/restaurant_top"
-        android:layout_width="380dp"
-        android:layout_height="105dp"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:paddingTop="20dp"
         android:orientation="vertical"
-        android:layout_marginTop="5dp"
+        android:background="@color/primary_color"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <SearchView
             android:id="@+id/restaurant_searchView"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:background="@drawable/radiussearch"
@@ -26,57 +27,56 @@
             android:padding="5dp"
             android:queryBackground="@drawable/radiussearch"
             android:queryHint="식당 이름 검색"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_gravity="center_horizontal"/>
 
         <LinearLayout
             android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/restaurant_searchView">
+            android:paddingTop="3dp"
+            android:layout_gravity="center_horizontal">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/restaurant_ueonBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
                 android:layout_weight="1"
                 android:background="@drawable/round_button"
                 android:backgroundTint="@color/background_color"
                 android:fontFamily="@font/nanumgothic"
                 android:text="어은동"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:layout_marginEnd="9dp"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/restaurant_ugoongBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
                 android:layout_weight="1"
                 android:background="@drawable/round_button"
                 android:backgroundTint="@color/background_color"
                 android:fontFamily="@font/nanumgothic"
                 android:text="어궁동"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:layout_marginEnd="9dp"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/restaurant_goongBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
                 android:layout_weight="1"
                 android:background="@drawable/round_button"
                 android:backgroundTint="@color/background_color"
                 android:fontFamily="@font/nanumgothic"
                 android:text="궁동"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:layout_marginEnd="9dp"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/restaurant_bongmyungBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
                 android:layout_weight="1"
                 android:background="@drawable/round_button"
                 android:backgroundTint="@color/background_color"

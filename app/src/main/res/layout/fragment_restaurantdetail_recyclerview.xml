@@ -88,7 +88,7 @@
             android:layout_height="360dp"
             android:layout_gravity="center_horizontal"
             tools:srcCompat="@tools:sample/avatars"
-            android:scaleType="fitCenter"
+            android:scaleType="centerCrop"
             android:layout_marginBottom="7dp"/>
 
         <TextView
