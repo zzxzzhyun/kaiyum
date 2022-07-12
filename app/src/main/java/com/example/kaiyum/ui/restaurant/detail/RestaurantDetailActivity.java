@@ -33,6 +33,7 @@ import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.overlay.OverlayImage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,7 +43,6 @@ public class RestaurantDetailActivity extends AppCompatActivity implements OnMap
     private MapView mapView;
     public static NaverMap naverMap;
     private Marker marker = new Marker();
-
     private int rid;
 
     // for Intent
@@ -50,6 +50,7 @@ public class RestaurantDetailActivity extends AppCompatActivity implements OnMap
 
     double latitude;
     double longitude;
+
 
     public RestaurantDetailReviewRecyclerAdapter adapter;
 
@@ -121,9 +122,11 @@ public class RestaurantDetailActivity extends AppCompatActivity implements OnMap
         TextView location = findViewById(R.id.restaurantDetail_location);
         TextView score = findViewById(R.id.restaurantDetail_score);
         TextView reviewCount = findViewById(R.id.restaurantDetail_reviewCount);
+        HashMap<String,String> locationTable = convertLocation();
+
 
         name.setText(r.getName());
-        location.setText(r.getLocation());
+        location.setText(locationTable.get(r.getLocation()));
         score.setText(String.format("%.1f", r.getScore()));
         reviewCount.setText("" + r.getReviewCount());
 
@@ -184,6 +187,7 @@ public class RestaurantDetailActivity extends AppCompatActivity implements OnMap
                     r.setUserName(object.getAsJsonObject().get("nickname").getAsString());
                     r.setText(object.getAsJsonObject().get("text").getAsString());
                     r.setScore(object.getAsJsonObject().get("score").getAsInt());
+                    r.setTimestamp(object.getAsJsonObject().get("regdate").getAsString());
 
                     if(!object.getAsJsonObject().get("img").isJsonNull()){
                         r.setImgUrl(object.getAsJsonObject().get("img").getAsString());
@@ -212,6 +216,7 @@ public class RestaurantDetailActivity extends AppCompatActivity implements OnMap
             data.setScore(r.getScore());
             data.setText(r.getText());
             data.setImgUrl(r.getImgUrl());
+            data.setTimestamp(r.getTimestamp());
             adapter.addItem(data);
         }
 
@@ -232,4 +237,15 @@ public class RestaurantDetailActivity extends AppCompatActivity implements OnMap
             }
         });
     }
+
+
+    private HashMap<String, String> convertLocation(){
+        HashMap<String, String> table = new HashMap<>();
+        table.put("ueon", "어은동");
+        table.put("ugoong", "어궁동");
+        table.put("goong", "궁동");
+        table.put("bongmyung", "봉명동");
+        return table;
+    }
+
 }
