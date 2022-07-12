@@ -51,7 +51,7 @@ public class CampusFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     // TODO: Temporary open/close list
-    List<String> allArr = Arrays.asList(new String[]{"fclt", "west", "east1", "east2", "emp"});
+    List<String> allArr = Arrays.asList(new String[]{"fclt", "west", "east1", "east2", "emp", "pulbitmaru", "subway", "osalad", "lotteria"});
     List<String> day = Arrays.asList(new String[]{"morning", "lunch", "dinner"});
 
     public CampusFragment() {

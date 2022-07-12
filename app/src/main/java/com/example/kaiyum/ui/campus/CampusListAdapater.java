@@ -67,10 +67,12 @@ public class CampusListAdapater extends RecyclerView.Adapter<CampusListAdapater.
         holder.campus_cafeteria.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, CampusDetailActivity.class);
-                intent.putExtra("name", mData.get(position));
-                ((Activity) mContext).finish();
-                mContext.startActivity(intent);
+                if(isStudentCafeteria(mData.get(position))){
+                    Intent intent = new Intent(mContext, CampusDetailActivity.class);
+                    intent.putExtra("name", mData.get(position));
+                    ((Activity) mContext).finish();
+                    mContext.startActivity(intent);
+                }
             }
         });
     }
@@ -99,12 +101,36 @@ public class CampusListAdapater extends RecyclerView.Adapter<CampusListAdapater.
             case "emp":
                 title = "교수회관";
                 break;
+            case "subway":
+                title = "서브웨이";
+                break;
+            case "osalad":
+                title = "오샐러드";
+                break;
+            case "pulbitmaru":
+                title = "풀빛마루";
+                break;
+            case "lotteria":
+                title = "롯데리아";
+                break;
             default:
                 title = "Invalid cafeteria";
                 break;
         }
 
         return title;
+    }
+
+    private boolean isStudentCafeteria(String name){
+        String[] notStudents = {"pulbitmaru", "lotteria", "osalad", "subway"};
+
+        for(String restaurant : notStudents){
+            if(name.equals(restaurant)){
+                return false;
+            }
+        }
+
+        return true;
     }
 
 

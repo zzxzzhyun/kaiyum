@@ -197,7 +197,7 @@ public class ReviewActivity extends AppCompatActivity {
             cursor.moveToFirst();
             mediaPath = cursor.getString(cursor.getColumnIndex(MediaStore.MediaColumns.DATA));
         }else{
-            imgStatusTextView.setText("사진 로드 실패. 다시 부탁드립니다.");
+            imgStatusTextView.setText("사진을 선택하지 않으셨습니다.");
         }
     }
 
@@ -255,6 +255,9 @@ public class ReviewActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "사진 등록에 실패했습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
                 }
             });
+        }else{
+            Toast.makeText(getApplicationContext(), "소중한 후기 감사합니다.", Toast.LENGTH_SHORT).show();
+            finish();
         }
     }
 
