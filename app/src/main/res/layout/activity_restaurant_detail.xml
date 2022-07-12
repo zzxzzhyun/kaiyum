@@ -14,12 +14,12 @@
             android:id="@+id/restaurantDetail_mainImage"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:background="@android:color/darker_gray"
+            android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@android:color/darker_gray"
-            android:scaleType="centerCrop"/>
+            tools:srcCompat="@drawable/ic_round_restaurant_24"
+            android:scaleType="fitCenter"/>
 
         <TextView
             android:id="@+id/restaurantDetail_name"
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:textColor="@color/black"
-                android:text="  리뷰 "
+                android:text="  최근리뷰 "
                 android:fontFamily="@font/nanumgothic"
                 android:textAlignment="textEnd" />
 
@@ -86,20 +86,15 @@
                 android:text="0" />
 
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_baseline_edit_24"
-                android:layout_marginStart="40dp"/>
-
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/restaurantDetail_reviewBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
                 android:layout_weight="0"
-                android:layout_marginStart="-12dp"
-                android:includeFontPadding="false"
+                android:drawableLeft="@drawable/ic_baseline_edit_24"
                 android:fontFamily="@font/nanumgothicextrabold"
+                android:includeFontPadding="false"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
                 android:text="리뷰쓰기"
@@ -136,6 +131,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/restaurantDetail_map" />

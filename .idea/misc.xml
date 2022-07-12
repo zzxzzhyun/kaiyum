@@ -13,6 +13,7 @@
         <entry key="app/src/main/res/drawable/ic_baseline_send_24.xml" value="0.365" />
         <entry key="app/src/main/res/drawable/ic_outline_school_24.xml" value="0.365" />
         <entry key="app/src/main/res/drawable/ic_round_restaurant_24.xml" value="0.365" />
+        <entry key="app/src/main/res/drawable/ic_round_sentiment_very_satisfied_24.xml" value="0.224" />
         <entry key="app/src/main/res/drawable/ic_twotone_food_bank_24.xml" value="0.365" />
         <entry key="app/src/main/res/drawable/radiussearch.xml" value="0.365" />
         <entry key="app/src/main/res/drawable/round_button.xml" value="0.365" />
@@ -33,7 +34,7 @@
         <entry key="app/src/main/res/layout/fragment_more.xml" value="0.2734375" />
         <entry key="app/src/main/res/layout/fragment_restaurant_list.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_restaurant_recycler_adapter.xml" value="0.67" />
-        <entry key="app/src/main/res/layout/fragment_restaurantdetail_recyclerview.xml" value="0.19157608695652173" />
+        <entry key="app/src/main/res/layout/fragment_restaurantdetail_recyclerview.xml" value="0.25" />
         <entry key="app/src/main/res/layout/popup.xml" value="0.1" />
       </map>
     </option>

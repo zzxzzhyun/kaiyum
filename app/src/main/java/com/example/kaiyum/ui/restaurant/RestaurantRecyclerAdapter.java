@@ -18,6 +18,7 @@ import com.example.kaiyum.ui.restaurant.detail.RestaurantDetailActivity;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRecyclerAdapter.ItemViewHolder>{
     private ArrayList<Restaurant> listData = new ArrayList<>();
@@ -33,12 +34,13 @@ public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRe
     @Override
     public void onBindViewHolder(@NonNull RestaurantRecyclerAdapter.ItemViewHolder holder, int position) {
         Restaurant restaurant = listData.get(position);
+        HashMap<String, String> locationTable = convertLocation();
 
         holder.id.setText("" + restaurant.getId());
         holder.name.setText(restaurant.getName());
         holder.reviewCount.setText("" + restaurant.getReviewCount());
         holder.score.setText(String.format("%.1f", restaurant.getScore()));
-        holder.location.setText(restaurant.getLocation());
+        holder.location.setText(locationTable.get(restaurant.getLocation()));
 
         // Image URL로 사진 교체
         if(restaurant.getImageURL().equals("")){
@@ -96,4 +98,14 @@ public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRe
         }
 
     }
+
+    private HashMap<String, String> convertLocation(){
+        HashMap<String, String> table = new HashMap<>();
+        table.put("ueon", "어은동");
+        table.put("ugoong", "어궁동");
+        table.put("goong", "궁동");
+        table.put("bongmyung", "봉명동");
+        return table;
+    }
+
 }

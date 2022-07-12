@@ -33,6 +33,7 @@ public class RestaurantDetailReviewRecyclerAdapter extends RecyclerView.Adapter<
 
         holder.userName.setText("" + review.getUserName());
         holder.text.setText("" + review.getText());
+        holder.timestamp.setText("" + review.getTimestamp().substring(0,10));
 
         // 사진이 있으면 url로 보여주고, 없으면 imageView를 숨김
         if(review.getImgUrl() == null){
@@ -45,6 +46,7 @@ public class RestaurantDetailReviewRecyclerAdapter extends RecyclerView.Adapter<
         for(int i=0;i<review.getScore();i++){
             holder.stars[i].setImageResource(R.drawable.star_on);
         }
+
     }
 
     @Override
@@ -65,6 +67,7 @@ public class RestaurantDetailReviewRecyclerAdapter extends RecyclerView.Adapter<
         private TextView userName;
         private TextView text;
         private ImageView reviewImg;
+        private TextView timestamp;
         ImageView[] stars = new ImageView[5];
 
         ItemViewHolder(View itemView) {
@@ -78,6 +81,7 @@ public class RestaurantDetailReviewRecyclerAdapter extends RecyclerView.Adapter<
             stars[2] = itemView.findViewById(R.id.restaurantDetail_reviewStar3);
             stars[3] = itemView.findViewById(R.id.restaurantDetail_reviewStar4);
             stars[4] = itemView.findViewById(R.id.restaurantDetail_reviewStar5);
+            timestamp = itemView.findViewById(R.id.review_timestamp);
         }
 
     }
