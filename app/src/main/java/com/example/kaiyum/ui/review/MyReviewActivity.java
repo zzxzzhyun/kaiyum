@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -80,8 +81,8 @@ public class MyReviewActivity extends AppCompatActivity {
                     ImageView imgView = findViewById(R.id.MyReview_Neopjuk);
                     TextView textView = findViewById(R.id.MyReview_noReviewText);
 
-                    imgView.bringToFront();
-                    textView.bringToFront();
+                    imgView.setVisibility(View.VISIBLE);
+                    textView.setVisibility(View.VISIBLE);
                 }
 
                 for(JsonElement object : reviews){
@@ -94,7 +95,7 @@ public class MyReviewActivity extends AppCompatActivity {
                     r.setTimestamp(object.getAsJsonObject().get("regdate").getAsString());
 
                     if(object.getAsJsonObject().get("img") == JsonNull.INSTANCE){
-                        r.setImgUrl("");
+                        r.setImgUrl(null);
                     }else{
                         r.setImgUrl(object.getAsJsonObject().get("img").getAsString());
                     }
