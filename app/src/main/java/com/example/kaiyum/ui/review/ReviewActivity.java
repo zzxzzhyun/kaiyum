@@ -253,6 +253,7 @@ public class ReviewActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(Call<JsonObject> call, Throwable t) {
                     Toast.makeText(getApplicationContext(), "사진 등록에 실패했습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+                    Log.e("THROW", t.getMessage());
                 }
             });
         }else{

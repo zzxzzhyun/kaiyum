@@ -134,7 +134,7 @@ public class RestaurantDetailActivity extends AppCompatActivity implements OnMap
         if (!r.getImageURL().equals("")) {
             Glide.with(getApplicationContext()).load(r.getImageURL()).into(img);
         } else {
-            Glide.with(getApplicationContext()).load(R.drawable.ic_round_restaurant_24).into(img);
+            Glide.with(getApplicationContext()).load(R.drawable.ic_baseline_flatware_24).into(img);
         }
 
         // TODO : 위도와 경도를 서버에서 받아서 설정하는 코드 추가
@@ -182,7 +182,14 @@ public class RestaurantDetailActivity extends AppCompatActivity implements OnMap
             @Override
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
                 JsonArray reviews = response.body();
+                // 내가 쓴 리뷰가 있다면 넙죽이가 안 보이게 하기
+                if(reviews.size() == 0){
+                    ImageView imgView = findViewById(R.id.Review_Neopjuk);
+                    TextView textView = findViewById(R.id.Review_noReviewText);
 
+                    imgView.setVisibility(View.VISIBLE);
+                    textView.setVisibility(View.VISIBLE);
+                }
                 for (JsonElement object : reviews) {
                     Review r = new Review();
 

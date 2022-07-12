@@ -95,7 +95,7 @@ public class MyReviewActivity extends AppCompatActivity {
                     r.setTimestamp(object.getAsJsonObject().get("regdate").getAsString());
 
                     if(object.getAsJsonObject().get("img") == JsonNull.INSTANCE){
-                        r.setImgUrl("");
+                        r.setImgUrl(null);
                     }else{
                         r.setImgUrl(object.getAsJsonObject().get("img").getAsString());
                     }
