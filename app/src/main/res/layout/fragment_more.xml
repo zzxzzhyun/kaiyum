@@ -25,7 +25,17 @@
             android:paddingLeft="10dp"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
-            android:text="내 리뷰 확인하기"
+            android:text="내 리뷰 확인"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/more_changeNicknameBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:text="닉네임 변경"
             android:textStyle="bold" />
 
         <TextView
