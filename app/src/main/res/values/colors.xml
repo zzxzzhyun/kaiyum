@@ -12,14 +12,14 @@
     <color name = "mustard">#F8C74F</color>
     <color name = "mustard_light">#FFEBA2</color>
     <color name = "mustard_lighter">#FFFFF0</color>
-    <color name = "green">#00FFB7</color>
-    <color name = "green_light">#ADFFE8</color>
-    <color name="green_lighter">#D5FFF3</color>
+    <color name = "kaist_blue">#116BD8</color>
+    <color name = "kaist_blue_lighter">#BDD5FF</color>
+    <color name= "kaist_blue_light">#699FFF</color>
     <color name="green_dark">#00B557</color>
     <color name = "red">#F84F4F</color>
 
     <color name = "primary_color"> @color/mustard </color>
-    <color name = "secondary_color"> @color/green </color>
+    <color name = "secondary_color"> @color/kaist_blue </color>
     <color name = "background_color"> @color/mustard_lighter</color>
     <color name = "highlight_color"> @color/red </color>
 

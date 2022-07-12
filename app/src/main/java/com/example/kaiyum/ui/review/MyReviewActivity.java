@@ -91,6 +91,7 @@ public class MyReviewActivity extends AppCompatActivity {
                     r.setText(object.getAsJsonObject().get("text").getAsString());
                     r.setRestaurantName(object.getAsJsonObject().get("name").getAsString());
                     r.setScore(object.getAsJsonObject().get("score").getAsInt());
+                    r.setTimestamp(object.getAsJsonObject().get("regdate").getAsString());
 
                     if(object.getAsJsonObject().get("img") == JsonNull.INSTANCE){
                         r.setImgUrl("");
@@ -120,6 +121,7 @@ public class MyReviewActivity extends AppCompatActivity {
             data.setScore(r.getScore());
             data.setText(r.getText());
             data.setImgUrl(r.getImgUrl());
+            data.setTimestamp(r.getTimestamp());
 
             adapter.addItem(data);
         }

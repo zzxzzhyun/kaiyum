@@ -14,11 +14,11 @@
             android:id="@+id/restaurantDetail_mainImage"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:background="@android:color/darker_gray"
+            android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@android:color/darker_gray"
+            tools:srcCompat="@drawable/ic_round_restaurant_24"
             android:scaleType="centerCrop"/>
 
         <TextView
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:textColor="@color/black"
-                android:text="  리뷰 "
+                android:text="  최근리뷰 "
                 android:fontFamily="@font/nanumgothic"
                 android:textAlignment="textEnd" />
 
@@ -86,22 +86,21 @@
                 android:text="0" />
 
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_baseline_edit_24"
-                android:layout_marginStart="40dp"/>
-
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/restaurantDetail_reviewBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="30sp"
+                android:layout_marginStart="12dp"
                 android:layout_weight="0"
-                android:layout_marginStart="-12dp"
-                android:includeFontPadding="false"
+                android:background="@drawable/radiussearch"
+                android:backgroundTint="@color/kaist_blue_light"
+                android:drawableStart="@drawable/ic_baseline_edit_24"
                 android:fontFamily="@font/nanumgothicextrabold"
+                android:includeFontPadding="false"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
+                android:paddingLeft="3dp"
+                android:paddingRight="8dp"
                 android:text="리뷰쓰기"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
@@ -127,15 +126,20 @@
             android:name="com.naver.maps.map.MapFragment"
             android:layout_width="match_parent"
             android:layout_height="150dp"
+            android:layout_marginTop="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/restaurantDetail_review_recyclerView"
-            android:layout_width="match_parent"
+            android:layout_width="360dp"
             android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/restaurantDetail_map" />

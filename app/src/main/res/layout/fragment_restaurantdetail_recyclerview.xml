@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp"
+        android:paddingBottom="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -19,11 +19,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="작성자"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/nanumgothicextrabold"
+            android:textColor="@color/black"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="160dp"
             android:layout_height="30dp"
             android:orientation="horizontal">
 
@@ -31,6 +33,7 @@
                 android:id="@+id/restaurantDetail_reviewStar1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:paddingRight="1dp"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/star_off" />
 
@@ -38,6 +41,7 @@
                 android:id="@+id/restaurantDetail_reviewStar2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:paddingRight="1dp"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/star_off" />
 
@@ -45,6 +49,7 @@
                 android:id="@+id/restaurantDetail_reviewStar3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:paddingRight="1dp"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/star_off" />
 
@@ -53,28 +58,46 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:paddingRight="1dp"
                 app:srcCompat="@drawable/star_off" />
 
             <ImageView
                 android:id="@+id/restaurantDetail_reviewStar5"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:paddingRight="1dp"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/star_off" />
 
+            <TextView
+                android:id="@+id/review_timestamp"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="timestamp"
+                android:paddingTop="10dp"
+                android:paddingLeft="15dp"
+                android:textSize="10dp"
+                >
+
+            </TextView>
         </LinearLayout>
 
         <ImageView
             android:id="@+id/restaurantDetail_reviewImg"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_height="360dp"
+            android:layout_gravity="center_horizontal"
+            tools:srcCompat="@tools:sample/avatars"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="7dp"/>
 
         <TextView
             android:id="@+id/restaurantDetail_userReview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="리뷰 내용" />
+            android:text="리뷰 내용"
+            android:fontFamily="@font/nanumgothic"
+            android:textColor="@color/black" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

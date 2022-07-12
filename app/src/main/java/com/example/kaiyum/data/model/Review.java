@@ -1,5 +1,7 @@
 package com.example.kaiyum.data.model;
 
+import java.sql.Date;
+
 public class Review {
     private long unid;
     private int rid;
@@ -8,6 +10,7 @@ public class Review {
     private int score;
     private String text;
     private String imgUrl;
+    private String timestamp;
 
     public long getUnid() {
         return unid;
@@ -65,6 +68,10 @@ public class Review {
         this.imgUrl = imgUrl;
     }
 
+    public String getTimestamp() {return timestamp;}
+
+    public void setTimestamp(String timestamp) {this.timestamp = timestamp; }
+
     @Override
     public String toString() {
         return "Review{" +
@@ -75,6 +82,7 @@ public class Review {
                 ", score=" + score +
                 ", text='" + text + '\'' +
                 ", imgUrl='" + imgUrl + '\'' +
+                ", timestamp='" + timestamp + '\'' +
                 '}';
     }
 }
